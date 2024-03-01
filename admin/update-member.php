@@ -1,29 +1,33 @@
 <?php
 include '../dbcon.php';
-
+include '../query.php';
 //Updating Information
 if(isset($_GET['id'])){
     $id=$_GET['id'];
 }
-if(!empty($_POST)){
-    $name=$_POST['fullname'];
-    $username=$_POST['username'];
-    $gender=$_POST['gender'];
-    $dor=$_POST['dor'];
-    $contact=$_POST['contact'];
-    $address=$_POST['address'];
-    $service=$_POST['services'];
-    $duration=$_POST['plan'];
-    $sql="UPDATE members SET fullname='$name', username='$username', gender='$gender', dor='$dor', contact='$contact', 
-    address='$address', services='$service', plan='$duration' WHERE user_id=$id";
-    if(mysqli_query($conn,$sql)){
-        $_SESSION['success']="Member's Info Updated Succesfully";
-        header("Location:member-list.php");
-    }
+if(isset($_POST['add'])){
+    // $name=$_POST['fullname'];
+    // $username=$_POST['username'];
+    // $gender=$_POST['gender'];
+    // $dor=$_POST['dor'];
+    // $contact=$_POST['contact'];
+    // $address=$_POST['address'];
+    // $service=$_POST['services'];
+    // $duration=$_POST['plan'];
+    // $sql="UPDATE members SET fullname='$name', username='$username', gender='$gender', dor='$dor', contact='$contact', 
+    // address='$address', services='$service', plan='$duration' WHERE user_id=$id";
+    // if(mysqli_query($conn,$sql)){
+    //     $_SESSION['success']="Member's Info Updated Succesfully";
+    //     header("Location:member-list.php");
+    // }
+        $obj=new query();
+        $obj->update("members",$_POST,$id);
+        header('Location:member-list.php');
+
 }
 
 //For Existing Info
-$sql="SELECT * FROM members WHERE user_id=$id";
+$sql="SELECT * FROM members WHERE id=$id";
 $res=mysqli_query($conn,$sql);
 
 ?>
@@ -77,7 +81,7 @@ $res=mysqli_query($conn,$sql);
                         <option value="12" <?php if($value['plan']=='12') echo 'selected'; ?>>One Year</option>
                     </select>
                 </div>
-            <button>Update Record</button>
+            <button name="add">Update Record</button>
             </div>
         </form>
         <?php } ?>

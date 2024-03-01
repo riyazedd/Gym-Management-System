@@ -1,9 +1,9 @@
 <?php
-include '../dbcon.php';
+include '../query.php';
 
 //Displaying Members Progress(initial weight, current weight, progress)
-$sql="SELECT * FROM members";
-$res=mysqli_query($conn,$sql);
+$sql=new query();
+$res=$sql->select("members");
 $sn=1;
 ?>
 
@@ -53,7 +53,7 @@ $sn=1;
                     echo $progress;
                 }
                 ?></td>
-                <td><a href="progress-update.php?id=<?=$user['user_id']?>"><button class="update">Update</button></a></td>
+                <td><a href="progress-update.php?id=<?=$user['id']?>"><button class="update">Update</button></a></td>
             </tr>
             <?php } ?>
         </tbody>

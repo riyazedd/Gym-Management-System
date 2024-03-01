@@ -1,9 +1,9 @@
 <?php
-include '../dbcon.php';
+include '../query.php';
 
 //Displaying Equipment List
-$sql="SELECT * FROM equipment";
-$res=mysqli_query($conn,$sql);
+$sql=new query();
+$res=$sql->select("equipment");
 $sn=1;
 
 

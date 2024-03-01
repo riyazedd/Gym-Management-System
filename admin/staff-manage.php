@@ -1,9 +1,9 @@
 <?php
-include '../dbcon.php';
+include '../query.php';
 
 //Displaying Staff List
-$sql="SELECT * FROM staffs";
-$res=mysqli_query($conn,$sql);
+$sql=new query();
+$res=$sql->select("staffs");
 $sn=1;
 
 ?>

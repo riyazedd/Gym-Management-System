@@ -4,10 +4,7 @@ include '../query.php';
 //USING OOPS
 if(isset($_POST['add'])){
     $obj=new query();
-    $res=$obj->insert("staffs",$_POST);
-    if($res){
-        $_SESSION['success']="New Staff Added";
-    }
+    $obj->insert("staffs",$_POST);
 }
 
 ?>

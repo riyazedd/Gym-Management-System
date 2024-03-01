@@ -53,10 +53,10 @@ $sn=1;
                 <td><?=$user['services']?></td>
                 <td><?=$user['plan']?> Months</td>
                 <td>
-                    <a href="update-member.php?id=<?=$user['user_id']?>" title="Update Member's Info" class="update"><i class="fa-solid fa-edit"></i></a>
+                    <a href="update-member.php?id=<?=$user['id']?>" title="Update Member's Info" class="update"><i class="fa-solid fa-edit"></i></a>
                 </td>
                 <td>
-                    <a href="member-delete.php?id=<?=$user['user_id']?>" title="Delete Member" class="delete"><i class="fa-solid fa-trash"></i></a>
+                    <a href="member-delete.php?id=<?=$user['id']?>" title="Delete Member" class="delete"><i class="fa-solid fa-trash"></i></a>
                 </td>
             </tr>
             <?php } ?>

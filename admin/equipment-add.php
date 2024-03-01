@@ -1,6 +1,6 @@
 <?php
 include '../dbcon.php';
-
+include '../query.php';
 //Inserting/Adding Equipment
 if(!empty($_POST)){
     $name=$_POST['name'];

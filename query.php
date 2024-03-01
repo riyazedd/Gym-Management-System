@@ -25,7 +25,10 @@ class query extends Database{
     //to delete data
     function delete($table,$id){
         $sql="delete from $table where id=$id";
-        $this->conn->query($sql);
+        $res=$this->conn->query($sql);
+        if($res){
+            $_SESSION['success']="Deleted Succesfully";
+        }
     }
 
     //to update data

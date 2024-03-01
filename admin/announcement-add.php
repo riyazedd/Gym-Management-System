@@ -1,14 +1,10 @@
 <?php
-include '../dbcon.php';
+include '../query.php';
 
 //Adding/Inserting Announcements
-if(!empty($_POST)){
-    $message=$_POST['message'];
-    $date=$_POST['date'];
-    $sql="INSERT INTO announcements (message,date)VALUES('$message','$date')";
-    if(mysqli_query($conn,$sql)){
-        $_SESSION['success']="Announcement Added Succesfully!";
-    }
+if(isset($_POST['add'])){
+    $obj=new query();
+    $obj->insert("announcements",$_POST);
 }
 
 ?>
@@ -43,7 +39,7 @@ if(!empty($_POST)){
                         <td>
                             <textarea name="message" placeholder="Enter announcement here..."></textarea><br>
                             <label for="date">Date:&nbsp&nbsp</label><input type="date" name="date"><br>
-                            <button class="publish">Publish</button>
+                            <button name='add' class="publish">Publish</button>
                         </td>
                     </tr>
                 </tbody>

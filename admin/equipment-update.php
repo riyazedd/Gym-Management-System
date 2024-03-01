@@ -1,6 +1,6 @@
 <?php
 include '../dbcon.php';
-
+include '../query.php';
 //Updating Equipment Information
 if(isset($_GET['id'])) $id=$_GET['id'];//setting id of equipment
 
@@ -23,8 +23,8 @@ if(!empty($_POST)){
     }
 }
 //Displaying Existing Information
-$sql="SELECT * FROM equipment WHERE id=$id";
-$res=mysqli_query($conn,$sql);
+$sql=new query();
+$res=$sql->select_id("equipment",$id);
 while($user=mysqli_fetch_assoc($res)){
     ?>
 

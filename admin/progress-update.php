@@ -1,24 +1,29 @@
 <?php
-include '../dbcon.php';
+include '../query.php';
 
 //Updating Progress
 if(isset($_GET['id'])) $id=$_GET['id'];
 
-if(!empty($_POST)){
-    $ini_weight=$_POST['ini_weight'];
-    $curr_weight=$_POST['curr_weight'];
-    $ini_bodytype=$_POST['ini_bodytype'];
-    $curr_bodytype=$_POST['curr_bodytype'];
-    $sql="UPDATE members SET ini_weight='$ini_weight',curr_weight='$curr_weight',ini_bodytype='$ini_bodytype',curr_bodytype='$curr_bodytype' WHERE user_id=$id";
-    if(mysqli_query($conn,$sql)){
-        $_SESSION['success']="User Progress Updated Succesfully";
-        header('Location:member-progress.php');
-    }
-}  
+// if(!empty($_POST)){
+//     $ini_weight=$_POST['ini_weight'];
+//     $curr_weight=$_POST['curr_weight'];
+//     $ini_bodytype=$_POST['ini_bodytype'];
+//     $curr_bodytype=$_POST['curr_bodytype'];
+//     $sql="UPDATE members SET ini_weight='$ini_weight',curr_weight='$curr_weight',ini_bodytype='$ini_bodytype',curr_bodytype='$curr_bodytype' WHERE user_id=$id";
+//     if(mysqli_query($conn,$sql)){
+//         $_SESSION['success']="User Progress Updated Succesfully";
+//         header('Location:member-progress.php');
+//     }
+// } 
+if(isset($_POST['add'])){
+    $obj=new query();
+    $obj->update("members",$_POST,$id);
+    header('Location:member-progress.php');
+} 
 
 //Displaying existing values
-$sql="SELECT * FROM members WHERE user_id=$id";
-$res=mysqli_query($conn,$sql);
+$sql=new query();
+$res=$sql->select_id("members",$id);
 
 while($user=mysqli_fetch_assoc($res)){
     ?>
@@ -65,7 +70,7 @@ while($user=mysqli_fetch_assoc($res)){
                     <td><input type="text" name="curr_bodytype" value="<?=$user['curr_bodytype']?>"></td>
                 </tr>
             </table>
-            <button>Update</button>
+            <button name='add'>Update</button>
         </form>
     </div>
 </div>

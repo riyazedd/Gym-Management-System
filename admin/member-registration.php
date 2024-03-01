@@ -1,5 +1,12 @@
 <?php 
-include '../dbcon.php';
+include '../query.php';
+
+if(isset($_POST['add'])){
+    $obj=new query();
+    $obj->insert("members",$_POST);
+    $_SESSION['success']="Added Successfully";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +23,7 @@ include '../dbcon.php';
        <?php include 'includes/template.php';?>
 <div class="content">
 <h2>New Member Register Form</h2>
+<?php if(isset($_SESSION['success'])){ ?> <div class="message"><h3><?=$_SESSION['success'];  unset($_SESSION['success'])?></h3></div><?php } ?>
     <div class="form-container">
         <form action="" method="post">
             <div class="personal">
@@ -52,7 +60,7 @@ include '../dbcon.php';
                         <option value="12" >One Year</option>
                     </select>
                 </div>
-            <button>Register Member</button>
+            <button name='add'>Register Member</button>
             </div>
         </form>
     </div>

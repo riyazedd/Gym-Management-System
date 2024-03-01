@@ -1,9 +1,9 @@
 <?php
-include '../dbcon.php';
+include '../query.php';
 
 //Displaying Announcements
-$sql="SELECT * FROM announcements";
-$res=mysqli_query($conn,$sql);
+$obj=new query();
+$res=$obj->select("announcements");
 $sn=1;
 
 ?>
