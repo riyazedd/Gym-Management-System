@@ -1,0 +1,26 @@
+table,th,td{
+    color: rgb(92,92,92);
+    border: 1px solid grey;
+    text-align: center;
+    padding: 10px;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+table .delete{
+    color: rgb(223, 4, 4);
+}
+
+table .update{
+    color: blue;
+}
+
+.message{
+    padding: 10px;
+    background-color: rgb(147, 233, 147);
+    color: green;
+}

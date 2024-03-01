@@ -1,0 +1,68 @@
+.content{
+    padding: 3rem;
+    color: rgb(91, 91, 91);
+    display: flex;
+    gap: 5rem;
+}
+
+.to-do{
+    width: 50%;
+}
+
+.to-do table, td, th{
+    border: 1px solid gray;
+    color: rgb(91, 91, 91);
+    font-size: 1.25rem;
+    
+}
+
+.to-do table{
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+table button{
+    font-size: 1rem;
+    border: none;
+    padding: 5px;
+}
+
+.update{
+    color: grey;
+}
+
+.complete{
+    color: green;
+}
+
+.announcement{
+    width: 50%;
+}
+
+.announce-list{
+    margin-top: 1rem;
+    padding: 15px;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.announce{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.ann i{
+    font-size: 1.25rem;
+}
+
+.hide-show{
+    margin-left: 1rem;
+}
+
+.hide-show:hover{
+    cursor: pointer;
+}

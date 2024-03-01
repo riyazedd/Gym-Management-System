@@ -1,0 +1,36 @@
+table,th,td{
+    color: rgb(92,92,92);
+    border: 1px solid grey;
+    padding: 10px;
+    text-align: center;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+table .delete{
+    color: rgb(223, 4, 4);
+}
+
+table .update{
+    color: blue;
+}
+
+.add{
+    margin-top: 1rem;
+    padding: 10px;
+    font-size: 1rem;
+    background-color:#387ADF;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.add:hover{
+    background-color: blue;
+    cursor: pointer;
+}

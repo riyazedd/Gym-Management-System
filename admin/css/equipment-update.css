@@ -1,0 +1,58 @@
+.form-container{
+    margin-top: 1rem;
+    width: 100%;
+}
+
+form{
+    display: flex;
+    gap: 2rem;
+}
+
+.left, .right{
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 30px;
+    width: 50%;
+    height: fit-content;
+}
+
+h3{
+    margin-bottom: 10px;
+}
+
+.left, .vendor-detail, .pricing{
+    display: flex;
+    flex-direction: column;
+}
+
+form input{
+    height: 2rem;
+    font-size: 1rem;
+    padding: 5px;
+}
+
+.right{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+button{
+    height: 3rem;
+    font-size: 1.25rem;
+    background-color: rgb(6, 198, 6);
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: rgb(3, 186, 226);
+}
+
+.message{
+    padding: 10px;
+    background-color: rgb(147, 233, 147);
+    color: green;
+}

@@ -1,0 +1,25 @@
+.message{
+    margin-top: 1rem;
+    padding: 1rem;
+    /* border: 1px solid grey; */
+    border-radius: 5px;
+    background-color: rgb(255, 188, 188);
+    color: red;
+}
+
+.message hr{
+    height: 1px;
+    background-color: red;
+    border: none;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.no-remind{
+    margin-top: 1rem;
+    padding: 1rem;
+    /* border: 1px solid grey; */
+    border-radius: 5px;
+    background-color: rgb(167, 242, 167);
+    color: green;
+}

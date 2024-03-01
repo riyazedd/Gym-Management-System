@@ -1,0 +1,28 @@
+table,td,th{
+    color: rgb(92,92,92);
+    padding: 10px;
+    border: 1px solid grey;
+    text-align: center;
+}
+
+table{
+    width: 100%;
+    margin-top: 1rem;
+    border-collapse: collapse;
+}
+table i{
+    color: rgb(221, 3, 3);
+}
+
+.back a{
+    color: grey;
+    text-decoration: none;
+}
+
+.back{
+    margin-top: 1rem;
+}
+
+.back a:hover{
+    text-decoration: underline;
+}

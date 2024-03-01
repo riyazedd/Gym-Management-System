@@ -1,0 +1,76 @@
+.progress{
+    margin-top: 1rem;
+    border: 1px solid grey;
+    padding: 40px;
+    border-radius: 5px;
+    margin-bottom: 3rem;
+    background-color: white;
+}
+
+table,th,td{
+    border: 1px solid grey;
+    padding: 10px;
+    color: rgb(92,92,92);
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+table th{
+    font-size: 1.25rem;
+    background-color: #eeeeee;
+}
+
+p{
+    font-size: 1rem;
+}
+
+.message-container{
+    margin-top: 2rem;
+}
+
+/* Membership */
+
+.membership{
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin-top: 1rem;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.details table th{
+    font-size: 1rem;
+}
+
+.details table,th,td{
+    padding: 10px;
+}
+
+.bottom{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.gym-info{
+    margin-top: 2rem;
+    margin-left: 1rem;
+}
+
+.membership-message{
+    margin-left: 1rem;
+    margin-top: 4rem;
+}
