@@ -15,7 +15,7 @@ if(!empty($_POST)){
     $service=$_POST['services'];
     $duration=$_POST['plan'];
     $sql="UPDATE members SET fullname='$name', username='$username', gender='$gender', dor='$dor', contact='$contact', 
-    address='$address', services='$service', plan='$duration' WHERE user_id=$id";
+    address='$address', services='$service', plan='$duration' WHERE id=$id";
     if(mysqli_query($conn,$sql)){
         $_SESSION['success']="Member's Info Updated Succesfully";
         header("Location:member-list.php");
@@ -23,7 +23,7 @@ if(!empty($_POST)){
 }
 
 //For Existing Info
-$sql="SELECT * FROM members WHERE user_id=$id";
+$sql="SELECT * FROM members WHERE id=$id";
 $res=mysqli_query($conn,$sql);
 
 ?>

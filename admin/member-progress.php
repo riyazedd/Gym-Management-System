@@ -53,7 +53,7 @@ $sn=1;
                     echo $progress;
                 }
                 ?></td>
-                <td><a href="progress-update.php?id=<?=$user['user_id']?>"><button class="update">Update</button></a></td>
+                <td><a href="progress-update.php?id=<?=$user['id']?>"><button class="update">Update</button></a></td>
             </tr>
             <?php } ?>
         </tbody>

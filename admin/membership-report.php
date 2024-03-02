@@ -35,7 +35,7 @@ $sn=1;
                 <td><?=$sn++?></td>
                 <td><?=$user['fullname']?></td>
                 <td><?=$user['services']?></td>
-                <td><a href="view-membership-report.php?id=<?=$user['user_id']?>"><i class="fa-solid fa-file" style="margin-right:0.5rem;"></i>View Membership Report</a></td>
+                <td><a href="view-membership-report.php?id=<?=$user['id']?>"><i class="fa-solid fa-file" style="margin-right:0.5rem;"></i>View Membership Report</a></td>
             </tr>
             <?php } ?>
         </tbody>

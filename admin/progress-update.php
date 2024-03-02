@@ -9,7 +9,7 @@ if(!empty($_POST)){
     $curr_weight=$_POST['curr_weight'];
     $ini_bodytype=$_POST['ini_bodytype'];
     $curr_bodytype=$_POST['curr_bodytype'];
-    $sql="UPDATE members SET ini_weight='$ini_weight',curr_weight='$curr_weight',ini_bodytype='$ini_bodytype',curr_bodytype='$curr_bodytype' WHERE user_id=$id";
+    $sql="UPDATE members SET ini_weight='$ini_weight',curr_weight='$curr_weight',ini_bodytype='$ini_bodytype',curr_bodytype='$curr_bodytype' WHERE id=$id";
     if(mysqli_query($conn,$sql)){
         $_SESSION['success']="User Progress Updated Succesfully";
         header('Location:member-progress.php');
@@ -17,7 +17,7 @@ if(!empty($_POST)){
 }  
 
 //Displaying existing values
-$sql="SELECT * FROM members WHERE user_id=$id";
+$sql="SELECT * FROM members WHERE id=$id";
 $res=mysqli_query($conn,$sql);
 
 while($user=mysqli_fetch_assoc($res)){

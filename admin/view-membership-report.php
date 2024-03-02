@@ -2,7 +2,7 @@
 include '../dbcon.php';
 
 if(isset($_GET['id'])) $id=$_GET['id'];
-$sql="SELECT * FROM members WHERE user_id=$id";
+$sql="SELECT * FROM members WHERE id=$id";
 $result=mysqli_query($conn,$sql);
 while($row=mysqli_fetch_assoc($result)){
 

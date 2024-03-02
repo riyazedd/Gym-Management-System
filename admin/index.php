@@ -1,6 +1,5 @@
 <?php 
 include '../dbcon.php';
-session_start();
 if(!empty($_POST)){
     $username=$_POST['username'];
     $password=md5($_POST['password']);
