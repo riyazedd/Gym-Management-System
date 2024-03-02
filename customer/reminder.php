@@ -1,14 +1,25 @@
-<link rel="stylesheet" href="css/reminder.css">
 <?php 
 include "../dbcon.php";
-include "includes/boilerplate.php";
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FitManage Hub</title>
+        <script src="https://kit.fontawesome.com/426c1a4028.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./css/boilerplate.css">
+        <link rel="stylesheet" href="css/reminder.css">
+    </head>
+    <body>
+   <?php include "includes/boilerplate.php";?>
 
 <div class="content">
     <h2>Reminders</h2>
     <?php 
         $id=$_SESSION['uid'];
-        $sql="SELECT reminder FROM members WHERE user_id=$id";
+        $sql="SELECT reminder FROM members WHERE id=$id";
         $result=mysqli_query($conn,$sql);
         while($row=mysqli_fetch_assoc($result)){
             if($row['reminder']=='1'){ 

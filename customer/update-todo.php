@@ -1,7 +1,5 @@
-<link rel="stylesheet" href="css/todo.css">
 <?php
 include '../dbcon.php';
-include 'includes/boilerplate.php';
 
 if(isset($_GET['id'])){
     $id=$_GET['id'];
@@ -26,12 +24,24 @@ $sql="SELECT * FROM todo WHERE id='$id'";
 $result=mysqli_query($conn,$sql);
 
 foreach($result as $key=>$value){
+    
+    ?>
 
-?>
-
-<div class="content">
-    <h2>Update Task</h2>
-    <div class="form-container">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FitManage Hub</title>
+        <script src="https://kit.fontawesome.com/426c1a4028.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./css/boilerplate.css">
+        <link rel="stylesheet" href="css/todo.css">
+    </head> 
+    <body>
+      <?php  include 'includes/boilerplate.php';?>
+        <div class="content">
+            <h2>Update Task</h2>
+            <div class="form-container">
     <form action="" method="post">
         <div class="input">
             <label for="task">Please Enter your Task: </label>
@@ -44,7 +54,7 @@ foreach($result as $key=>$value){
                 <option value="Pending" <?php if($value['task_status']=="Pending"){echo "selected";}?>>Pending</option>
             </select>
         </div>
-        <input type="hidden" name="user_id" value="<?=$_SESSION['uid']?>">
+        <input type="hidden" name="id" value="<?=$_SESSION['uid']?>">
         <button>Update</button>
         <?php 
 }

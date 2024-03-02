@@ -1,7 +1,5 @@
-<link rel="stylesheet" href="css/dashboard.css">
 <?php
 include '../dbcon.php'; 
-include 'includes/boilerplate.php';
 
 //For displaying TO-DO List//
 $uid=$_SESSION['uid'];
@@ -13,11 +11,25 @@ if(isset($_GET['id'])){
     $id=$_GET['id'];
     $sql="DELETE FROM todo WHERE id='$id'";
     if(mysqli_query($conn,$sql)){
+        header('Location:dashboard.php');
         $_SESSION['success']="Task Completed Successfully";
     }
 }
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FitManage Hub</title>
+        <script src="https://kit.fontawesome.com/426c1a4028.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./css/boilerplate.css">
+        <link rel="stylesheet" href="css/dashboard.css">
+    </head>
+    <body>
+   <?php include 'includes/boilerplate.php';?>
             <div class="content">
                 <div class="to-do">
                     <h2>My To-Do-List</h2><p></p>

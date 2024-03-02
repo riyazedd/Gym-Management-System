@@ -1,24 +1,35 @@
-<link rel="stylesheet" href="css/reports.css">
 <?php 
 include '../dbcon.php';
-include 'includes/boilerplate.php';
 
 //FOR PROGRESS
 $id=$_SESSION['uid'];
-$sql="SELECT * FROM members WHERE user_id=$id";
+$sql="SELECT * FROM members WHERE id=$id";
 $result=mysqli_query($conn,$sql);
 while($row=mysqli_fetch_assoc($result)){
-$ini_weight=$row['ini_weight'];
-$curr_weight=$row['curr_weight'];
-if($ini_weight<$curr_weight){
-    $diff=$curr_weight-$ini_weight;
-    $progress=$diff." Kg Gained";
-}else{
-    $diff=$ini_weight-$curr_weight;
-    $progress=$diff." Kg Lost";
-}
+    $ini_weight=$row['ini_weight'];
+    $curr_weight=$row['curr_weight'];
+    if($ini_weight<$curr_weight){
+        $diff=$curr_weight-$ini_weight;
+        $progress=$diff." Kg Gained";
+    }else{
+        $diff=$ini_weight-$curr_weight;
+        $progress=$diff." Kg Lost";
+    }
+    
+    ?>
 
-?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FitManage Hub</title>
+        <script src="https://kit.fontawesome.com/426c1a4028.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./css/boilerplate.css">
+        <link rel="stylesheet" href="css/reports.css">
+    </head>
+    <body>
+   <?php include 'includes/boilerplate.php';?>
 
 <div class="content">
     <h2>Progress Report</h2>

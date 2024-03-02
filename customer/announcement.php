@@ -1,10 +1,21 @@
-<link rel="stylesheet" href="css/announcement.css">
 <?php 
 include '../dbcon.php';
-include 'includes/boilerplate.php';
 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FitManage Hub</title>
+        <script src="https://kit.fontawesome.com/426c1a4028.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./css/boilerplate.css">
+        <link rel="stylesheet" href="css/announcement.css">
+    </head>
+    <body>
+        
+      <?php  include 'includes/boilerplate.php';?>
 <div class="content">
     <h2>Announcements</h2>
     <div class="announcements">

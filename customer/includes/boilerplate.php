@@ -1,5 +1,4 @@
-<?php include '../dbcon.php';
-session_start();
+<?php
 
 if(!$_SESSION['is_login']){
     echo "login or signup first";
@@ -7,16 +6,6 @@ if(!$_SESSION['is_login']){
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitManage Hub</title>
-    <script src="https://kit.fontawesome.com/426c1a4028.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/boilerplate.css">
-</head>
-<body>
     <div class="container">
     <div class="sidebar">
             <div class="logo"><img src="../images/logo.png" alt=""></div>
