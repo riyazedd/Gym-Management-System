@@ -9,7 +9,7 @@ if(!empty($_POST)){
     $num_rows=mysqli_num_rows($result);
     if($num_rows>0){
         $_SESSION['user']=$user['username'];
-        $_SESSION['uid']=$user['user_id'];
+        $_SESSION['uid']=$user['id'];
         $_SESSION['is_login']=true;
         header("Location: dashboard.php");
     }

@@ -14,14 +14,17 @@ body{
 
 img{
     position: absolute;
-    height: 50px;
+    height: 70px;
     margin-left: 50px;
     margin-top: 10px;
 }
 
 nav{
     position: absolute;
-    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    height: 70px;
     width: 100%;
 }
 
@@ -36,14 +39,13 @@ nav ul{
 }
 
 nav ul li a{
-    font-family: sans-serif;
     display: flex;
     align-items: center;
     text-decoration: none;
-    font-size: 1.15em;
+    font-size: 1.5em;
     color: white;
     padding: 10px 30px;
-    height: 60px;
+    height: 70px;
     transition: .5s ease;
 }
 
