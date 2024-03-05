@@ -1,6 +1,5 @@
 <?php
 include "../dbcon.php";
-session_start();
 if(!empty($_POST)){
     $fname=$_POST['fullname'];
     $username=$_POST['username'];
