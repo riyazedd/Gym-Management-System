@@ -26,3 +26,38 @@ table .update{
     background-color: rgb(147, 233, 147);
     color: green;
 }
+
+.heading{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#searchForm{
+    width: 40%;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 30px;
+}
+
+#searchField{
+    width: 90%;
+    height: 2rem;
+    border: 0;
+    outline: 0;
+    padding: 5px;
+    padding-left: 10px;
+    border-radius: 30px;
+    font-size: 1.25rem;
+}
+
+#searchForm button{
+    width: 10%;
+    font-size: 1.25rem;
+    color: grey;
+    background: none;
+    border: none;
+    outline: none;
+}
