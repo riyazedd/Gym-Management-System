@@ -3,7 +3,11 @@ include '../dbcon.php';
 
 //FOR PROGRESS
 $id=$_SESSION['uid'];
-$sql="SELECT * FROM members WHERE id=$id";
+$sql="SELECT members.*, services.service_name,services.cost, progress.ini_weight, progress.curr_weight,progress.ini_bodytype, progress.curr_bodytype
+    FROM members
+    LEFT JOIN services ON members.services_id=services.id
+    LEFT JOIN progress ON members.id=progress.member_id
+    WHERE members.id=$id";
 $result=mysqli_query($conn,$sql);
 while($row=mysqli_fetch_assoc($result)){
     $ini_weight=$row['ini_weight'];
@@ -78,23 +82,21 @@ while($row=mysqli_fetch_assoc($result)){
                             <th>Duration</th>
                             <th>Address</th>
                             <th>Charge</th>
-                            <th>Attendance Count</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><?=$id?></td>
-                            <td><?=$row['services']?></td>
+                            <td><?=$row['service_name']?></td>
                             <td><?=$row['plan']?> Month/s</td>
                             <td><?=$row['address']?></td>
-                            <td><?=$row['amount']?></td>
-                            <td><?=$row['attendance_count']?></td>
+                            <td><?=$row['cost']?></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="bottom">
-                <h3>Last Payment Done: $<?=$row['amount']?>/-</h3>
+                <h3>Last Payment Done: $<?=$row['cost']?>/-</h3>
                 <p>Member Since: <?=$row['dor']?></p>
             </div>
         </div>

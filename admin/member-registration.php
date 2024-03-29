@@ -1,5 +1,24 @@
 <?php 
 include '../dbcon.php';
+if(!empty($_POST)){
+    $fname=$_POST['fullname'];
+    $username=$_POST['username'];
+    $password=md5($_POST['password']);
+    $contact=$_POST['contact'];
+    $address=$_POST['address'];
+    $gender=$_POST['gender'];
+    $plan=$_POST['plan'];
+    $services=$_POST['services'];
+    $dor=date("Y-m-d");
+    $sql="INSERT INTO members (fullname,username,password,contact,address,gender,plan,services_id,dor) VALUES
+    ('$fname','$username','$password','$contact','$address','$gender','$plan','$services','$dor')";
+    $result=mysqli_query($conn,$sql);
+    if($result){
+        $_SESSION['success']="Registered Succesfully";
+    }else{
+        $_SESSION['error']="Error Registering User";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +35,7 @@ include '../dbcon.php';
        <?php include 'includes/template.php';?>
 <div class="content">
 <h2>New Member Register Form</h2>
+<?php if(isset($_SESSION['success'])){ ?> <div class="message"><h3><?=$_SESSION['success'];  unset($_SESSION['success'])?></h3></div><?php } ?>
     <div class="form-container">
         <form action="" method="post">
             <div class="personal">
@@ -40,11 +60,22 @@ include '../dbcon.php';
                 <hr>
                 <div class="service">
                     <h3>Service Details</h3>
-                    <label for="service">Services: </label><select name="services">
-                        <option value="Fitness">Fitness</option>
-                        <option value="Sauna">Sauna</option>
-                        <option value="Cardio">Cardio</option>
+                    <label for="service">Services: </label>
+                    <select name="services">
+                        <?php
+                        // Assuming $conn is your database connection
+                        $service_query = "SELECT id, service_name FROM services"; // Assuming your services table has columns id and service_name
+                        $service_result = mysqli_query($conn, $service_query);
+                        if ($service_result && mysqli_num_rows($service_result) > 0) {
+                            while ($row = mysqli_fetch_assoc($service_result)) {
+                                $service_id = $row['id'];
+                                $service_name = $row['service_name'];
+                                echo "<option value='$service_id'>$service_name</option>";
+                            }
+                        }
+                        ?>
                     </select><br>
+                    <br>
                     <label for="duration">Duration: </label><select name="plan">
                         <option value="1">One Month</option>
                         <option value="3">Three Month</option>

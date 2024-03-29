@@ -1,14 +1,19 @@
 <?php
-session_start();
 include '../dbcon.php';
 
 //Deleting User
-if(isset($_GET['id'])){
-    $id=$_GET['id'];
-    $sql="DELETE FROM members WHERE user_id=$id";
-    if(mysqli_query($conn,$sql)){
-        $_SESSION['success']="Member Deleted Succesfully";
-        header("Location:member-list.php");
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    
+    // Delete associated records from the progress table
+    $delete_progress_sql = "DELETE FROM progress WHERE member_id = $id";
+    mysqli_query($conn, $delete_progress_sql);
+
+    // Then delete the member
+    $sql = "DELETE FROM members WHERE id = $id";
+    if (mysqli_query($conn, $sql)) {
+        $_SESSION['success'] = "Member Deleted Successfully";
+        header("Location: member-list.php");
     }
 }
 

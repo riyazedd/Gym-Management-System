@@ -10,7 +10,7 @@ if(!empty($_POST)){
     $plan=$_POST['plan'];
     $services=$_POST['services'];
     $dor=date("Y-m-d");
-    $sql="INSERT INTO members (fullname,username,password,contact,address,gender,plan,services,dor) VALUES
+    $sql="INSERT INTO members (fullname,username,password,contact,address,gender,plan,services_id,dor) VALUES
     ('$fname','$username','$password','$contact','$address','$gender','$plan','$services','$dor')";
     $result=mysqli_query($conn,$sql);
     if($result){
@@ -69,11 +69,21 @@ if(!empty($_POST)){
                 </select></div>
                 <div class="input"><i class="fa-solid fa-magnifying-glass"></i>
                 <select name="services" required>
-                    <option selected disabled hidden value="">Select Service</option>
-                    <option value="Fitness">Fitness</option>
-                    <option value="Sauna">Sauna</option>
-                    <option value="Cardio">Cardio</option>  
-                </select></div>
+                        <option selected disabled hidden value="">Select Service</option>
+
+                        <?php
+                        // Assuming $conn is your database connection
+                        $service_query = "SELECT id, service_name FROM services"; // Assuming your services table has columns id and service_name
+                        $service_result = mysqli_query($conn, $service_query);
+                        if ($service_result && mysqli_num_rows($service_result) > 0) {
+                            while ($row = mysqli_fetch_assoc($service_result)) {
+                                $service_id = $row['id'];
+                                $service_name = $row['service_name'];
+                                echo "<option value='$service_id'>$service_name</option>";
+                            }
+                        }
+                        ?>
+                    </select></div>
                 </div>
                 <div class="action">
             <a href="login.php">Login</a>

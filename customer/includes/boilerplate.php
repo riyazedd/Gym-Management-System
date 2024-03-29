@@ -25,8 +25,7 @@ if(!$_SESSION['is_login']){
                 <ul>
                     <li class="dropdown"><a href="#"><span class="icon"><i class="fa-solid fa-user"></i></span>Welcome <?=$_SESSION['user']?></a>
                     <ul>
-                        <li><a href="">My Tasks</a></li>
-                        <li><a href="">My Reports</a></li>
+                        <li><a href="">Update Profile</a></li>
                     </ul></li>
                     <li><a href="../logout.php"><span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>Logout</a></li>
                 </ul>

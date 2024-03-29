@@ -2,7 +2,9 @@
 include '../dbcon.php';
 
 //Display Information
-$sql="SELECT * FROM members";
+$sql="SELECT members.*, services.service_name
+    FROM members
+    LEFT JOIN services ON members.services_id=services.id";
 $res=mysqli_query($conn,$sql);
 $sn=1;
 ?>
@@ -34,7 +36,7 @@ $sn=1;
             <tr>
                 <td><?=$sn++?></td>
                 <td><?=$user['fullname']?></td>
-                <td><?=$user['services']?></td>
+                <td><?=$user['service_name']?></td>
                 <td><a href="view-membership-report.php?id=<?=$user['id']?>"><i class="fa-solid fa-file" style="margin-right:0.5rem;"></i>View Membership Report</a></td>
             </tr>
             <?php } ?>

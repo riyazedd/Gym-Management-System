@@ -2,7 +2,9 @@
 include '../dbcon.php';
 
 //Displaying Status
-$sql="SELECT * FROM members";
+$sql="SELECT members.*, services.service_name 
+    FROM members
+    LEFT JOIN services on members.services_id=services.id";
 $res=mysqli_query($conn,$sql);
 $sn=1;
 
@@ -41,7 +43,7 @@ $sn=1;
                     <td><?=$sn++?></td>
                     <td><?=$user['fullname']?></td>
                     <td><?=$user['contact']?></td>
-                    <td><?=$user['services']?></td>
+                    <td><?=$user['service_name']?></td>
                     <td><?=$user['plan']?> Month/s</td>
                     <td><?=$user['dor']?></td>
                     <td><?php if( $user['status'] == 'Active' ){ echo '<i class="fas fa-circle" style="color:green;"></i> Active';} else { echo '<i class="fas fa-circle" style="color:red;"></i> Expired';}?></td>

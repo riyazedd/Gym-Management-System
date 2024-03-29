@@ -2,9 +2,14 @@
 include '../dbcon.php';
 
 //Displaying Members Progress(initial weight, current weight, progress)
-$sql="SELECT * FROM members";
-$res=mysqli_query($conn,$sql);
-$sn=1;
+$sql = "SELECT members.*,services.service_name, progress.ini_weight, progress.curr_weight, progress.ini_bodytype, progress.curr_bodytype
+        FROM members
+        LEFT JOIN progress ON members.id = progress.member_id
+        LEFT JOIN services ON members.services_id = services.id
+        ";
+
+$res = mysqli_query($conn, $sql);
+$sn = 1;
 ?>
 
 <!DOCTYPE html>
@@ -35,25 +40,25 @@ $sn=1;
             </tr>
         </thead>
         <tbody>
-            <?php while($user=mysqli_fetch_assoc($res)){?>
+            <?php while($row=mysqli_fetch_assoc($res)){?>
             <tr>
                 <td><?=$sn++?></td>
-                <td><?=$user['fullname']?></td>
-                <td><?=$user['ini_weight']?></td>
-                <td><?=$user['curr_weight']?></td>
-                <td><?=$user['services']?></td>
+                <td><?= $row['fullname'] ?></td>
+                <td><?= $row['ini_weight'] ?></td>
+                <td><?= $row['curr_weight'] ?></td>
+                <td><?= $row['service_name'] ?></td>
                 <td><?php
-                if($user['ini_weight']<$user['curr_weight']){
-                    $diff=$user['curr_weight']-$user['ini_weight'];
+                if($row['ini_weight']<$row['curr_weight']){
+                    $diff=$row['curr_weight']-$row['ini_weight'];
                     $progress=$diff." Kg Gained";
                     echo $progress;
                 }else{
-                    $diff=$user['ini_weight']-$user['curr_weight'];
+                    $diff=$row['ini_weight']-$row['curr_weight'];
                     $progress=$diff." Kg Lost";
                     echo $progress;
                 }
                 ?></td>
-                <td><a href="progress-update.php?id=<?=$user['id']?>"><button class="update">Update</button></a></td>
+                <td><a href="progress-update.php?id=<?=$row['id']?>"><button class="update">Update</button></a></td>
             </tr>
             <?php } ?>
         </tbody>

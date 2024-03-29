@@ -3,7 +3,11 @@ include '../dbcon.php';
 
 //Display Information
 if(isset($_GET['id'])) $id=$_GET['id'];
-$sql="SELECT * FROM members WHERE id=$id";
+$sql = "SELECT members.*,services.service_name, progress.ini_weight, progress.curr_weight, progress.ini_bodytype, progress.curr_bodytype
+        FROM members
+        LEFT JOIN progress ON members.id = progress.member_id
+        LEFT JOIN services ON members.services_id = services.id
+        WHERE members.id = $id";
 $res=mysqli_query($conn,$sql);
 while($row=mysqli_fetch_assoc($res)){
     $ini_weight=$row['ini_weight'];
@@ -52,7 +56,7 @@ while($row=mysqli_fetch_assoc($res)){
                     <td><?=$row['ini_bodytype']?></td>
                     <td><?=$row['curr_bodytype']?></td>
                     <td><?=$progress?></td>
-                    <td><?=$row['services']?></td>
+                    <td><?=$row['service_name']?></td>
                 </tr>
             </tbody>
         </table>

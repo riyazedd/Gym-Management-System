@@ -15,7 +15,7 @@ if(!empty($_POST)){
     $service=$_POST['services'];
     $duration=$_POST['plan'];
     $sql="UPDATE members SET fullname='$name', username='$username', gender='$gender', dor='$dor', contact='$contact', 
-    address='$address', services='$service', plan='$duration' WHERE id=$id";
+    address='$address', services_id='$service', plan='$duration' WHERE id=$id";
     if(mysqli_query($conn,$sql)){
         $_SESSION['success']="Member's Info Updated Succesfully";
         header("Location:member-list.php");
@@ -23,7 +23,10 @@ if(!empty($_POST)){
 }
 
 //For Existing Info
-$sql="SELECT * FROM members WHERE id=$id";
+$sql="SELECT members.*, services.service_name
+    FROM members 
+    LEFT JOIN services ON members.services_id = services.id
+    WHERE members.id = $id";
 $res=mysqli_query($conn,$sql);
 
 ?>
@@ -65,10 +68,18 @@ $res=mysqli_query($conn,$sql);
                 <hr>
                 <div class="service">
                     <h3>Service Details</h3>
-                    <label for="service">Services: </label><select name="services">
-                        <option value="Fitness" <?php if($value['services']=='fitness') echo 'selected'; ?>>Fitness</option>
-                        <option value="Sauna" <?php if($value['services']=='sauna') echo 'selected'; ?>>Sauna</option>
-                        <option value="Cardio" <?php if($value['services']=='cardio') echo 'selected'; ?>>Cardio</option>
+                    <label for="service">Services: </label>
+                    <select name="services">
+                        <?php
+                        // Fetching service options from the services table
+                        $service_query = "SELECT * FROM services";
+                        $service_result = mysqli_query($conn, $service_query);
+                        while ($service = mysqli_fetch_assoc($service_result)) {
+                            // Comparing each option with the value stored in the database
+                            $selected = ($service['id'] == $value['services_id']) ? 'selected' : '';
+                            echo "<option value='" . $service['id'] . "' $selected>" . $service['service_name'] . "</option>";
+                        }
+                        ?>
                     </select><br>
                     <label for="duration">Duration: </label><select name="plan">
                         <option value="1" <?php if($value['plan']=='1') echo 'selected'; ?>>One Month</option>

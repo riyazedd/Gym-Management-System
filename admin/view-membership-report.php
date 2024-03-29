@@ -2,7 +2,10 @@
 include '../dbcon.php';
 
 if(isset($_GET['id'])) $id=$_GET['id'];
-$sql="SELECT * FROM members WHERE id=$id";
+$sql="SELECT members.*, services.service_name, services.cost
+    FROM members
+    LEFT JOIN services ON members.services_id=services.id
+    WHERE members.id=$id";
 $result=mysqli_query($conn,$sql);
 while($row=mysqli_fetch_assoc($result)){
 
@@ -42,17 +45,17 @@ while($row=mysqli_fetch_assoc($result)){
                     <tbody>
                         <tr>
                             <td><?=$id?></td>
-                            <td><?=$row['services']?></td>
+                            <td><?=$row['service_name']?></td>
                             <td><?=$row['plan']?> Month/s</td>
                             <td><?=$row['address']?></td>
-                            <td><?=$row['amount']?></td>
+                            <td><?=$row['cost']?></td>
                             <td><?=$row['attendance_count']?></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="bottom">
-                <h3>Last Payment Done: $<?=$row['amount']?>/-</h3>
+                <h3>Last Payment Done: $<?=$row['cost']?>/-</h3>
                 <p>Member Since: <?=$row['dor']?></p>
             </div>
         </div>

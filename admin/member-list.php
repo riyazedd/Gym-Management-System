@@ -2,7 +2,9 @@
 include "../dbcon.php";
 
 //Display Users
-$sql="SELECT * FROM members";
+$sql="SELECT members.*, services.service_name, services.cost
+    FROM members
+    LEFT JOIN services on members.services_id=services.id";
 $res=mysqli_query($conn,$sql);
 $sn=1;
 
@@ -10,10 +12,14 @@ $sn=1;
 if(!empty($_POST)){
     $search=$_POST['search'];
     if(!empty($search)){
-        $sql="SELECT * FROM members WHERE CONCAT(fullname,services) LIKE '%$search%'";
+        $sql="SELECT members.*, services.service_name, services.cost
+        FROM members
+        LEFT JOIN services on members.services_id=services.id WHERE CONCAT(fullname,service_name    ) LIKE '%$search%'";
         $res=mysqli_query($conn,$sql);
     }else{
-        $sql="SELECT * FROM members";
+        $sql="SELECT members.*, services.service_name, services.cost
+        FROM members
+        LEFT JOIN services on members.services_id=services.id";
         $res=mysqli_query($conn,$sql);
     }
 }
@@ -43,7 +49,7 @@ if(!empty($_POST)){
 
 <div class="content">
     <div class="heading"><h2>Registered Members List</h2>
-    <form action="" method="post" id="searchForm">
+    <form action="member-list.php" method="post" id="searchForm">
         <input type="text" id="searchField" placeholder="Search" name="search" value="<?php echo isset($_POST['search']) ? htmlspecialchars($_POST['search']) : ''; ?>" oninput="submitForm()">
         <button type="submit"><i class="fa-solid fa-search"></i></button>
     </form></div>
@@ -69,23 +75,23 @@ if(!empty($_POST)){
             <tr>
                 <td colspan="11">NO RECORD FOUND</td>
             </tr>
-       <?php } else { while($user=mysqli_fetch_assoc($res)){ ?>
+       <?php } else { while($row=mysqli_fetch_assoc($res)){ ?>
             <tr>
                 <td><?=$sn++?></td>
-                <td><?=$user['fullname']?></td>
-                <td><?=$user['username']?></td>
-                <td><?=$user['gender']?></td>
-                <td><?=$user['contact']?></td>
-                <td><?=$user['dor']?></td>
-                <td><?=$user['address']?></td>
-                <td><?=$user['amount']?></td>
-                <td><?=$user['services']?></td>
-                <td><?=$user['plan']?> Months</td>
+                <td><?=$row['fullname']?></td>
+                <td><?=$row['username']?></td>
+                <td><?=$row['gender']?></td>
+                <td><?=$row['contact']?></td>
+                <td><?=$row['dor']?></td>
+                <td><?=$row['address']?></td>
+                <td><?=$row['cost']?></td>
+                <td><?=$row['service_name']?></td>
+                <td><?=$row['plan']?> Months</td>
                 <td>
-                    <a href="update-member.php?id=<?=$user['id']?>" title="Update Member's Info" class="update"><i class="fa-solid fa-edit"></i></a>
+                    <a href="update-member.php?id=<?=$row['id']?>" title="Update Member's Info" class="update"><i class="fa-solid fa-edit"></i></a>
                 </td>
                 <td>
-                    <a href="member-delete.php?id=<?=$user['id']?>" title="Delete Member" class="delete"><i class="fa-solid fa-trash"></i></a>
+                    <a href="member-delete.php?id=<?=$row['id']?>" title="Delete Member" class="delete"><i class="fa-solid fa-trash"></i></a>
                 </td>
             </tr>
             <?php }} ?>

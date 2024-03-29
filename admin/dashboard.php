@@ -11,11 +11,13 @@ $sql="SELECT * FROM members";
 $result=mysqli_query($conn,$sql);
 $memberCount=mysqli_num_rows($result);
 
-//Total Earning
-$sql="SELECT SUM(amount) as total_amount FROM members";
-$sum=mysqli_query($conn,$sql);
-$row_amount=mysqli_fetch_assoc($sum);
-$total_amount=$row_amount['total_amount'];
+// Total Earning
+$sql = "SELECT SUM(s.cost) AS total_earning 
+        FROM members m 
+        LEFT JOIN services s ON m.services_id = s.id";
+$sum = mysqli_query($conn, $sql);
+$row_amount = mysqli_fetch_assoc($sum);
+$total_earning = $row_amount['total_earning'];
 
 //Total Announcements
 $sql="SELECT * FROM announcements";
@@ -50,7 +52,7 @@ $num=mysqli_num_rows($res);
         </div>
         <div class="stat-box">
             <i class="fa-solid fa-rupee-sign"></i>
-            <h2 class="num"><?=$total_amount?></h2>
+            <h2 class="num"><?=$total_earning?></h2>
             <h2>Total Earning</h2>
         </div>
         <div class="stat-box">
