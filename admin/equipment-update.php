@@ -14,8 +14,24 @@ if(!empty($_POST)){
     $contact=$_POST['contact'];
     $cost=$_POST['cost'];
     $total_cost=$quantity*$cost;
-    $sql="UPDATE equipment SET name='$name',description='$description',date='$date',quantity='$quantity',vendor='$vendor',
-    address='$address',amount='$cost',total_amount='$total_cost'WHERE id=$id";
+
+    // Check if the vendor already exists
+    $vendorExistsQuery = "SELECT id FROM vendors WHERE vendor_name = '$vendor'";
+    $vendorExistsResult = mysqli_query($conn, $vendorExistsQuery);
+
+    if(mysqli_num_rows($vendorExistsResult) > 0) {
+        // If the vendor exists, get its ID
+        $vendorData = mysqli_fetch_assoc($vendorExistsResult);
+        $vendorId = $vendorData['id'];
+    } else {
+        // If the vendor doesn't exist, insert it and get its ID
+        $insertVendorQuery = "INSERT INTO vendors (vendor_name, address, contact) VALUES ('$vendor', '$address', '$contact')";
+        mysqli_query($conn, $insertVendorQuery);
+        $vendorId = mysqli_insert_id($conn);
+    }
+
+    $sql="UPDATE equipment SET name='$name',description='$description',date='$date',quantity='$quantity',vendor_id='$vendorId',
+    amount='$cost',total_amount='$total_cost'WHERE id=$id";
     $res=mysqli_query($conn,$sql);
     if($res){
         $_SESSION['success']="Infromation Updated";
@@ -23,7 +39,10 @@ if(!empty($_POST)){
     }
 }
 //Displaying Existing Information
-$sql="SELECT * FROM equipment WHERE id=$id";
+$sql="SELECT equipment.*, vendors.vendor_name, vendors.address, vendors.contact
+    FROM equipment
+    LEFT JOIN vendors ON equipment.vendor_id=vendors.id
+    WHERE equipment.id=$id";
 $res=mysqli_query($conn,$sql);
 while($user=mysqli_fetch_assoc($res)){
     ?>
@@ -59,7 +78,7 @@ while($user=mysqli_fetch_assoc($res)){
                 <div class="vendor-detail">
                     <h3>Vendor Details</h3>
                     <label for="vendor">Vendor</label>
-                    <input type="text" name="vendor" value="<?=$user['vendor']?>"><br>
+                    <input type="text" name="vendor" value="<?=$user['vendor_name']?>"><br>
                     <label for="address">Address</label>
                     <input type="text" name="address" value="<?=$user['address']?>"><br>
                     <label for="contact">Contact</label>

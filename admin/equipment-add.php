@@ -3,23 +3,41 @@ include '../dbcon.php';
 
 //Inserting/Adding Equipment
 if(!empty($_POST)){
-    $name=$_POST['name'];
-    $description=$_POST['description'];
-    $date=$_POST['date'];
-    $quantity=$_POST['quantity'];
-    $vendor=$_POST['vendor'];
-    $address=$_POST['address'];
-    $contact=$_POST['contact'];
-    $cost=$_POST['cost'];
-    $total_cost=$quantity*$cost;
-    $sql="INSERT INTO equipment (name,description,date,quantity,vendor,address,contact,amount,total_amount)
-    VALUES('$name','$description','$date','$quantity','$vendor','$address','$contact','$cost','$total_cost')";
-    $res=mysqli_query($conn,$sql);
+    $name = $_POST['name'];
+    $description = $_POST['description'];
+    $date = $_POST['date'];
+    $quantity = $_POST['quantity'];
+    $vendor = $_POST['vendor'];
+    $address = $_POST['address'];
+    $contact = $_POST['contact'];
+    $cost = $_POST['cost'];
+    $total_cost = $quantity * $cost;
+
+    // Check if the vendor already exists
+    $vendorExistsQuery = "SELECT id FROM vendors WHERE name = '$vendor'";
+    $vendorExistsResult = mysqli_query($conn, $vendorExistsQuery);
+
+    if(mysqli_num_rows($vendorExistsResult) > 0) {
+        // If the vendor exists, get its ID
+        $vendorData = mysqli_fetch_assoc($vendorExistsResult);
+        $vendorId = $vendorData['id'];
+    } else {
+        // If the vendor doesn't exist, insert it and get its ID
+        $insertVendorQuery = "INSERT INTO vendors (name, address, contact) VALUES ('$vendor', '$address', '$contact')";
+        mysqli_query($conn, $insertVendorQuery);
+        $vendorId = mysqli_insert_id($conn);
+    }
+
+    // Insert equipment with vendor ID
+    $sql = "INSERT INTO equipment (name, description, date, quantity, vendor_id, amount, total_amount) 
+            VALUES ('$name', '$description', '$date', '$quantity', '$vendorId', '$cost', '$total_cost')";
+    $res = mysqli_query($conn, $sql);
+
     if($res){
-        $_SESSION['success']="New Equipment Added";
+        $_SESSION['success'] = "New Equipment Added";
     }
 }
-?>
+?>  
 
 <!DOCTYPE html>
 <html lang="en">

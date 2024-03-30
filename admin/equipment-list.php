@@ -2,7 +2,9 @@
 include '../dbcon.php';
 
 //Displaying Equipment List
-$sql="SELECT * FROM equipment";
+$sql="SELECT equipment.*, vendors.vendor_name, vendors.address, vendors.contact
+    FROM equipment
+    LEFT JOIN vendors ON equipment.vendor_id=vendors.id";
 $res=mysqli_query($conn,$sql);
 $sn=1;
 
@@ -48,7 +50,7 @@ $sn=1;
                 <td><?=$item['quantity']?></td>
                 <td><?=$item['amount']?></td>
                 <td><?=$item['total_amount']?></td>
-                <td><?=$item['vendor']?></td>
+                <td><?=$item['vendor_name']?></td>
                 <td><?=$item['contact']?></td>
                 <td><?=$item['date']?></td>
                 <td><a href="equipment-update.php?id=<?=$item['id']?>" class="update" title="Update Equipment Information"><i class="fa-solid fa-edit"></i></a></td>
