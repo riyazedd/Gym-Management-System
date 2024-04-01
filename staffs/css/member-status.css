@@ -1,0 +1,12 @@
+table,th,td{
+    color: rgb(92,92,92);
+    border: 1px solid grey;
+    text-align: center;
+    padding: 10px;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 1rem;
+}

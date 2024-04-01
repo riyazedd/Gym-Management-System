@@ -1,0 +1,17 @@
+table,td,th{
+    color: rgb(92,92,92);
+    border: 1px solid grey;
+    padding: 10px;
+    text-align: center;
+}
+
+table{
+    border-collapse: collapse;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+table a{
+    /* text-decoration: none; */
+    color: rgb(92,92,92);
+}
