@@ -1,0 +1,37 @@
+.fa-money-check-dollar{
+    margin-right: 0.5rem;
+}
+
+table,th,td{
+    color: rgb(92,92,92);
+    border: 1px solid grey;
+    text-align: center;
+    padding: 10px;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+button{
+    padding:0.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.pay{
+    background-color: green;
+}
+
+.alert{
+    background-color: rgb(189, 41, 41);
+}
+

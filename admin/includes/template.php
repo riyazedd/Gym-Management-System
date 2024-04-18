@@ -20,7 +20,7 @@
                         </ul>
                     </li>
                     <li><a href="member-progress.php" class="pages"><span class="icon"><i class="fa-solid fa-chart-simple"></i></span>Member's Progress</a></li>
-                    <li><a href="#" class="pages"><span class="icon"><i class="fa-solid fa-money-check-dollar"></i></span>Payments</a></li>
+                    <li><a href="payment.php" class="pages"><span class="icon"><i class="fa-solid fa-money-check-dollar"></i></span>Payments</a></li>
                     <li><a href="announcement-add.php" class="pages"><span class="icon"><i class="fa-solid fa-bullhorn"></i></span>Announcement</a></li>
                     <li><a href="staff-manage.php" class="pages"><span class="icon"><i class="fa-solid fa-briefcase"></i></span>Staff Management</a></li>
                     <li><a href="#" class="pages report-inner"><span class="icon"><i class="fa-solid fa-file"></i></span>Reports</a>
