@@ -26,7 +26,7 @@ $res=mysqli_query($conn,$sql);
 <?php include "includes/template.php"?>
 
 <div class="content">
-    <h2><i class="fa-solid fa-money-check-dollar" style="margin-right: 0.5rem"></i>Payment Form</h2>
+    <h2><i class="fa-solid fa-money-check-dollar" style="margin-right: 0.5rem"></i>Payment Details</h2>
     <div class="form-container">
                 <form action="userpay.php" method="post">
                     <table>

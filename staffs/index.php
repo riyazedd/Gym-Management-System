@@ -2,7 +2,7 @@
 include '../dbcon.php';
 if(!empty($_POST)){
     $username=$_POST['username'];
-    $password=md5($_POST['password']);
+    $password=($_POST['password']);
     $sql="SELECT * FROM staffs WHERE username='$username' AND password='$password'";
     $result=mysqli_query($conn,$sql);
     $user=mysqli_fetch_assoc($result);

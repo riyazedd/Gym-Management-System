@@ -11,7 +11,6 @@
                             <li><a href="member-status.php" class="inner-page pages"><i class="fa-solid fa-arrow-right"></i>Member's Status </a></li>
                         </ul>
                     </li>
-                    <li><a href="#" class="pages"><span class="icon"><i class="fa-solid fa-calendar-days"></i></span>Attendence</a></li>
                     <li><a href="payment.php" class="pages"><span class="icon"><i class="fa-solid fa-money-check-dollar"></i></span>Payments</a></li>
                     <li><a href="#" class="pages report-inner"><span class="icon"><i class="fa-solid fa-file"></i></span>Reports</a>
                         <ul class="report-option inner-option">

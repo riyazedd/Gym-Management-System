@@ -1,0 +1,29 @@
+.receipt-container{
+    margin-top: 1rem;
+    border: 1px solid black;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+table{
+    width: 50%;
+    border: 1px solid black;
+}
+
+tbody,td,th{
+    padding: 1rem;
+}
+
+.message-container{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.message-text{
+    color: green;
+}

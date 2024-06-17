@@ -1,8 +1,24 @@
 .content{
     padding: 3rem;
     color: rgb(91, 91, 91);
+    
+}
+
+.top{
     display: flex;
     gap: 5rem;
+}
+
+.bottom{
+    width: 100%;
+    margin-top: 5rem;
+    position: relative;
+}
+
+
+
+.plan{
+    margin-top: 1rem;
 }
 
 .to-do{

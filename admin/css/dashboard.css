@@ -25,3 +25,29 @@
 .stat-box .active{
     margin-left: 1rem;
 }
+
+.charts{
+    margin-top: 8rem;
+    margin-bottom: 6rem;
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    height: 375px;
+}
+
+#chartContainer{
+    width: 45%;
+}
+
+#statusChartContainer{
+    width: 45%;
+}
+
+#serviceChartContainer{
+    width: 100%;
+    height: 375px;
+}
+
+.serviceChart{
+    margin-bottom: 5rem;    
+}

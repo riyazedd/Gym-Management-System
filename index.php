@@ -14,7 +14,7 @@
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="#services">Services</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#contact">Contact</a></li>
             <li class="dropdown"><a href="login.html">Account</a>
                 <ul>
                     <li><a href="login.html">Login</a></li>
@@ -23,6 +23,8 @@
             </li>
         </ul>
     </nav>
+
+    <!-- //home -->
     <section id="home">
         <div class="container">
             <div class="content">
@@ -33,6 +35,8 @@
             <p class="login_p">Already a Member? <a href="customer/login.php" class="login">Log in</a></p>   
         </div>
     </section>
+
+    <!-- //services -->
     <section id="services">
         <div class="services-container">
             <h1>Our Services</h1>
@@ -57,6 +61,28 @@
                     <i class="fa-solid fa-dumbbell"></i>
                     <h2>Weight & Strength</h2>
                     <p>Build your strength with our free weights and resistance training equipment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- //Contact -->
+    <section id="contact">
+        <div class="contact-container">
+            <h1>Contact Us</h1>
+            <p class="services_p">Reach out to us to begin your journey</p>
+            <div class="contacts">
+                <div class="phone contact-div">
+                    <i class="fa-solid fa-phone"></i>
+                    <p>+977 9876543210, 44553321</p>
+                </div>
+                <div class="email contact-div">
+                    <i class="fa-solid fa-envelope"></i>
+                    <p><a href="mailto:fitmanagehub@gmail.com">fitmanagehub@gmail.com</a></p>
+                </div>
+                <div class="map contact-div">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p>Putalisadak, Kathmandu</p>
                 </div>
             </div>
         </div>
