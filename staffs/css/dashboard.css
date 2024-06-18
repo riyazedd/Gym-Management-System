@@ -1,10 +1,39 @@
+.stats{
+    height: 100px;
+    display: flex;
+    gap: 1rem;
+    width: 45%;
+}
+
+.stat-box{
+    width: 100%;
+    height: fit-content;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.stat-box .num{
+    margin-top: 1rem;
+}
+.stats i{
+    font-size: 3rem;
+}
+
+.stat-box .active{
+    margin-left: 1rem;
+}
+
 .plan{
     margin-top: 1.5rem;
 }
 
 .chart{
     margin-top: 5rem;
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;
     width:100%;
     display: flex;
     justify-content: space-between;
@@ -17,4 +46,41 @@
 
 #serviceChartContainer{
     width: 45%;
+}
+
+.announcement{
+    width: 50%;
+}
+
+.announce-list{
+    margin-top: 1rem;
+    padding: 15px;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.announce{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.ann i{
+    font-size: 1.25rem;
+}
+
+.hide-show{
+    margin-left: 1rem;
+}
+
+.hide-show:hover{
+    cursor: pointer;
+}
+
+.info{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: start;
 }

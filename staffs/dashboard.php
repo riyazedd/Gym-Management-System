@@ -1,6 +1,11 @@
 <?php
 require_once "../dbcon.php";
 
+//Registered Member Count
+$sql = "SELECT * FROM members";
+$result = mysqli_query($conn, $sql);
+$memberCount = mysqli_num_rows($result);
+
 // For male and female chart
 $query = "SELECT gender, COUNT(*) as count FROM members GROUP BY gender";
 $result = mysqli_query($conn, $query);
@@ -8,7 +13,7 @@ $result = mysqli_query($conn, $query);
 $genderDataPoints = array();
 
 if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {
         $label = $row["gender"] == 'male' ? "Male" : "Female";
         $genderDataPoints[] = array("y" => $row["count"], "label" => $label);
     }
@@ -30,7 +35,7 @@ $service_result = mysqli_query($conn, $service_query);
 $serviceDataPoints = array();
 
 if ($service_result->num_rows > 0) {
-    while($row = $service_result->fetch_assoc()) {
+    while ($row = $service_result->fetch_assoc()) {
         $serviceDataPoints[] = array("y" => $row["count"], "label" => ucfirst($row["service_name"]));
     }
 } else {
@@ -92,15 +97,37 @@ if ($service_result->num_rows > 0) {
 <body>
     <?php include "includes/template.php" ?>
     <div class="content">
-        <div class="bottom">
-            <h1>Workout Routine</h1>
-            <iframe class="plan"
-                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSS5FYdawuKHTX09gx-N6LJi7bEFFU388OyZjxCEKkGWPPw406g5WcQrrPJrW6hVgnZ3qDiup9fA-dO/pubhtml?widget=true&amp;headers=false"
-                width="100%" height="500px"></iframe>
+        <div class="info">
+            <div class="stats">
+                <div class="stat-box">
+                    <i class="fa-solid fa-users"></i>
+                    <h2 class="num"><?= $memberCount ?></h2>
+                    <h2>Total Clients</h2>
+                </div>
+            </div>
+            <div class="announcement">
+                <h2>Gym Announcement <span class="hide-show"><i class="fa-solid fa-chevron-down icon"></i></span></h2>
+                <div class="announce-list">
+                    <?php
+                    $sql = "SELECT * FROM announcements";
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                        <div class="announce">
+                            <span class="ann"><i class="fa-solid fa-bullhorn"></i></span>
+                            <div class="messages">
+                                <h3><?= $row['message'] ?></h3>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
         <div class="chart">
-        <div id="chartContainer"></div>
-        <div id="serviceChartContainer"></div>
+            <div id="chartContainer"></div>
+            <div id="serviceChartContainer"></div>
         </div>
     </div>
 
