@@ -65,8 +65,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li><a href="#contact">Contact</a></li>
             <li class="dropdown"><a href="login.html">Account</a>
                 <ul>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="signup.html">Sign up</a></li>
+                    <li><a href="customer/login.php">Login</a></li>
+                    <li><a href="customer/signup.php">Sign up</a></li>
                 </ul>
             </li>
         </ul>
