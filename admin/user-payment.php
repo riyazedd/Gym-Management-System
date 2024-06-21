@@ -20,13 +20,16 @@ $res=mysqli_query($conn,$sql);
     <title>Payment Form</title>
     <link rel="stylesheet" href="css/user-payment.css">
     <script src="https://kit.fontawesome.com/426c1a4028.js" crossorigin="anonymous"></script>
-
+    
 </head>
 <body>
 <?php include "includes/template.php"?>
 
 <div class="content">
+    <div class="heading">
     <h2><i class="fa-solid fa-money-check-dollar" style="margin-right: 0.5rem"></i>Payment Details</h2>
+    
+    </div>
     <div class="form-container">
                 <form action="userpay.php" method="post">
                     <table>

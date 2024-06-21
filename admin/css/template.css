@@ -140,3 +140,9 @@ body{
     background-color: rgb(147, 233, 147);
     color: green;
 }
+
+.error{
+    padding: 10px;
+    color: rgb(168, 4, 4);
+    background-color: rgb(239, 115, 115);
+}

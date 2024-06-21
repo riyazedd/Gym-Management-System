@@ -25,9 +25,57 @@ table{
     cursor: pointer;
     background-color: rgb(0, 200, 255);
 }
+.upload{
+    width: 5rem;
+    height: 2rem;
+    font-size: 1rem;
+    background-color: rgb(10, 151, 5);
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+
+.upload:hover{
+    cursor: pointer;
+    background-color: rgb(0, 200, 255);
+}
 
 .message{
     padding: 10px;
     background-color: rgb(147, 233, 147);
     color: green;
+}
+
+.plan{
+    margin-top: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    width: 40%;
+}
+
+.plan input{
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    padding: 5px;
+    font-size: 1rem;
+}
+
+.plan label{
+    font-size: 1.25rem;
+}
+
+.add{
+    height: 2rem;
+    font-size: 1rem;
+    background-color: rgb(10, 151, 5);
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+
+.add:hover{
+    cursor: pointer;
+    background-color: rgb(0, 200, 255);
 }

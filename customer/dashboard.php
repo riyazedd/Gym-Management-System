@@ -16,6 +16,14 @@ if (isset($_GET['id'])) {
     }
 }
 
+//for training plan
+$plan_sql="SELECT plan_link FROM members WHERE id=$uid";
+$plan_res=mysqli_query($conn,$plan_sql);
+
+while($link=mysqli_fetch_assoc($plan_res)){
+    $plan=$link['plan_link'];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -86,9 +94,8 @@ if (isset($_GET['id'])) {
         <div class="bottom">
             <h1>Workout Routine</h1>
             <iframe class="plan"
-                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSS5FYdawuKHTX09gx-N6LJi7bEFFU388OyZjxCEKkGWPPw406g5WcQrrPJrW6hVgnZ3qDiup9fA-dO/pubhtml?widget=true&amp;headers=false"
-                    width="100%" height="500px"></iframe>
-        
+                    src="<?=$plan?>"
+                    width="100%" height="600px"></iframe>
         </div>
 
     </div>

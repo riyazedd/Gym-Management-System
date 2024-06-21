@@ -46,6 +46,10 @@ p{
     flex-wrap: wrap;
 }
 
+.details{
+    width: 70%;
+}
+
 .details table th{
     font-size: 1rem;
 }

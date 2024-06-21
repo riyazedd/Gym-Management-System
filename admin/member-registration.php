@@ -1,22 +1,32 @@
 <?php 
 include '../dbcon.php';
+
 if(!empty($_POST)){
-    $fname=$_POST['fullname'];
-    $username=$_POST['username'];
-    $password=md5($_POST['password']);
-    $contact=$_POST['contact'];
-    $address=$_POST['address'];
-    $gender=$_POST['gender'];
-    $plan=$_POST['plan'];
-    $services=$_POST['services'];
-    $dor=date("Y-m-d");
-    $sql="INSERT INTO members (fullname,username,password,contact,address,gender,plan,services_id,dor) VALUES
-    ('$fname','$username','$password','$contact','$address','$gender','$plan','$services','$dor')";
-    $result=mysqli_query($conn,$sql);
-    if($result){
-        $_SESSION['success']="Registered Succesfully";
-    }else{
-        $_SESSION['error']="Error Registering User";
+    $fname = $_POST['fullname'];
+    $username = $_POST['username'];
+    $password = md5($_POST['password']);
+    $contact = $_POST['contact'];
+    $address = $_POST['address'];
+    $gender = $_POST['gender'];
+    $plan = $_POST['plan'];
+    $services = $_POST['services'];
+    $dor = date("Y-m-d");
+
+    // Check if the username already exists
+    $checkUserQuery = "SELECT * FROM members WHERE username='$username'";
+    $checkResult = mysqli_query($conn, $checkUserQuery);
+    
+    if(mysqli_num_rows($checkResult) > 0){
+        $_SESSION['error'] = "Username is already used";
+    } else {
+        // Proceed with the insertion
+        $sql = "INSERT INTO members (fullname, username, password, contact, address, gender, plan, services_id, dor) VALUES ('$fname', '$username', '$password', '$contact', '$address', '$gender', '$plan', '$services', '$dor')";
+        $result = mysqli_query($conn, $sql);
+        if($result){
+            $_SESSION['success'] = "Registered Successfully";
+        } else {
+            $_SESSION['error'] = "Error Registering User";
+        }
     }
 }
 ?>
@@ -36,6 +46,7 @@ if(!empty($_POST)){
 <div class="content">
 <h2>New Member Register Form</h2>
 <?php if(isset($_SESSION['success'])){ ?> <div class="message"><h3><?=$_SESSION['success'];  unset($_SESSION['success'])?></h3></div><?php } ?>
+<?php if(isset($_SESSION['error'])){ ?> <div class="error"><h3><?=$_SESSION['error'];  unset($_SESSION['error'])?></h3></div><?php } ?>
     <div class="form-container">
         <form action="" method="post">
             <div class="personal">
@@ -88,5 +99,7 @@ if(!empty($_POST)){
         </form>
     </div>
 </div>
+
+
 
 <?php include 'includes/footer.php' ?>

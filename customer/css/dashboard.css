@@ -82,3 +82,13 @@ table button{
 .hide-show:hover{
     cursor: pointer;
 }
+
+
+.sheet a{
+    text-decoration: none;
+    color: black;
+}
+
+.sheet a:hover{
+    text-decoration: underline;
+}

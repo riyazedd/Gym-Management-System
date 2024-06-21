@@ -39,7 +39,6 @@ while($row=mysqli_fetch_assoc($result)){
                             <th>Duration</th>
                             <th>Address</th>
                             <th>Charge</th>
-                            <th>Attendance Count</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,13 +48,12 @@ while($row=mysqli_fetch_assoc($result)){
                             <td><?=$row['plan']?> Month/s</td>
                             <td><?=$row['address']?></td>
                             <td><?=$row['cost']?></td>
-                            <td><?=$row['attendance_count']?></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="bottom">
-                <h3>Last Payment Done: $<?=$row['cost']?>/-</h3>
+                <h3>Last Payment Done: Rs.<?=$row['cost']?>/-</h3>
                 <p>Member Since: <?=$row['dor']?></p>
             </div>
         </div>
