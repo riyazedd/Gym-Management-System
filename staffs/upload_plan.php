@@ -30,11 +30,18 @@ if(!empty($_POST)){
 
 <div class="content">
     <h1>Upload Training Plan</h1>
+    <?php if (isset($_SESSION['success'])) { ?>
+            <div class="message">
+                <h3><?= $_SESSION['success'];
+                unset($_SESSION['success']) ?></h3>
+            </div><?php } ?>
     <form action="" method="post" class="plan">
         <label for="link">Add Training Plan Link</label>
         <input type="text" name="link" placeholder="Add Plan Link">
         <button class="add">Add</button>
     </form>
+    <div class="back-div"><a href="member-progress.php" class="back">&#8592; Go Back</a></div>
+
 </div>
 
 

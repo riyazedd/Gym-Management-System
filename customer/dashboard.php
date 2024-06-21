@@ -96,6 +96,7 @@ while($link=mysqli_fetch_assoc($plan_res)){
             <iframe class="plan"
                     src="<?=$plan?>"
                     width="100%" height="600px"></iframe>
+                <div class="sheet"><a href="<?=$plan?>" target="_blank">&#8594;Open in Google Sheets</a></div>
         </div>
 
     </div>

@@ -35,11 +35,7 @@
         <div class="section">
             <div class="header">
                 <ul>
-                    <li class="dropdown"><a href="#"><span class="icon"><i class="fa-solid fa-user"></i></span>Welcome Admin</a>
-                    <ul>
-                        <li><a href="">My Tasks</a></li>
-                        <li><a href="">My Reports</a></li>
-                    </ul></li>
+                    <li class="dropdown"><a href="#"><span class="icon"><i class="fa-solid fa-user"></i></span>Welcome Admin</a></li>
                     <li><a href="../logout.php"><span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>Logout</a></li>
                 </ul>
             </div>

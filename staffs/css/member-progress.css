@@ -79,3 +79,16 @@ table{
     cursor: pointer;
     background-color: rgb(0, 200, 255);
 }
+
+.back{
+    text-decoration: none;
+    color: black;
+}
+
+.back:hover{
+    text-decoration: underline;
+}
+
+.back-div{
+    margin-top: 5px;
+}
