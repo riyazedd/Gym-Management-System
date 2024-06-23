@@ -10,5 +10,3 @@ if(mysqli_query($conn,$sql)){
     $_SESSION['success']="Staff Member Deleted";
     header('Location:staff-manage.php');
 }
-
-?>

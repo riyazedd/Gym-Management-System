@@ -1,11 +1,3 @@
-<?php
-
-if(!$_SESSION['is_login']){
-    echo "login or signup first";
-    header("Location:./login.php");
-}
-?>
-
     <div class="container">
     <div class="sidebar">
             <div class="logo"><img src="../images/logo.png" alt=""></div>
@@ -24,7 +16,7 @@ if(!$_SESSION['is_login']){
             <div class="header">
                 <ul>
                     <li class="dropdown"><a href="#"><span class="icon"><i class="fa-solid fa-user"></i></span>Welcome <?=$_SESSION['user']?></a></li>
-                    <li><a href="../logout.php"><span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>Logout</a></li>
+                    <li><a href="logout.php"><span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>Logout</a></li>
                 </ul>
             </div>
             

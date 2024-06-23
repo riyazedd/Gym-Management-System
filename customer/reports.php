@@ -1,5 +1,6 @@
 <?php 
 include '../dbcon.php';
+include 'includes/authentication.php';
 
 //FOR PROGRESS
 $id=$_SESSION['uid'];

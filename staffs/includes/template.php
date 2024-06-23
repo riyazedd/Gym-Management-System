@@ -1,3 +1,11 @@
+<?php
+
+if($_SESSION['is_login']!=true || $_SESSION['role']!='staff'){
+    $_SESSION['error']="Must Login to Access";
+    header('Location:index.php');
+}
+
+?>
 <link rel="stylesheet" href="css/template.css">   
 <div class="container">
         <div class="sidebar">
@@ -25,7 +33,7 @@
             <div class="header">
                 <ul>
                     <li class="dropdown"><a href="#"><span class="icon"><i class="fa-solid fa-user"></i></span>Welcome <?=$_SESSION['user']?></a></li>
-                    <li><a href="../logout.php"><span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>Logout</a></li>
+                    <li><a href="logout.php"><span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>Logout</a></li>
                 </ul>
             </div>
             

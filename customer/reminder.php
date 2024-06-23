@@ -1,5 +1,7 @@
 <?php 
 include "../dbcon.php";
+include 'includes/authentication.php';
+
 ?>
 
 <!DOCTYPE html>

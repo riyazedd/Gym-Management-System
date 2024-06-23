@@ -11,6 +11,7 @@ if(!empty($_POST)){
         $_SESSION['user']=$user['username'];
         $_SESSION['uid']=$user['id'];
         $_SESSION['is_login']=true;
+        $_SESSION['role']="staff";
         header("Location: dashboard.php");
     }
     else{

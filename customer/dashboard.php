@@ -1,5 +1,6 @@
 <?php
 include '../dbcon.php';
+include 'includes/authentication.php';
 
 //For displaying TO-DO List//
 $uid = $_SESSION['uid'];
