@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 17, 2024 at 11:42 AM
+-- Generation Time: Jun 29, 2024 at 02:23 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -104,19 +104,21 @@ CREATE TABLE `members` (
   `contact` varchar(10) NOT NULL,
   `status` varchar(20) NOT NULL DEFAULT 'Active',
   `reminder` int(11) NOT NULL DEFAULT 0,
-  `pay_date` date NOT NULL
+  `pay_date` date NOT NULL,
+  `plan_link` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `members`
 --
 
-INSERT INTO `members` (`id`, `fullname`, `username`, `password`, `gender`, `dor`, `services_id`, `plan`, `address`, `contact`, `status`, `reminder`, `pay_date`) VALUES
-(1, 'Ram Kumar', 'ram', '6a557ed1005dddd940595b8fc6ed47b2', 'male', '2024-02-28', 1, '6', 'Kathmandu', '9876543210', 'active', 0, '2024-04-23'),
-(2, 'shyam bahadur', 'shyam', 'cffba1722dd649bd7a72a37e48358b0f', 'male', '2024-02-29', 3, '1', 'Ipsa non non laboru', 'At cupidit', 'active', 0, '2024-04-21'),
-(5, 'Hari Bahadur', 'hari', 'bd1839a2fcfcb41ccc4942ca617cc2a5', 'male', '2024-06-16', 2, '1', 'Dolorem officia illu', 'Quia offic', 'active', 0, '0000-00-00'),
-(6, 'Roanna Fowler', 'vihifilu', '815188a998047a30ac00400f15beae05', 'female', '2024-06-17', 3, '1', 'Eum adipisci expedit', 'Iste irure', 'Active', 0, '0000-00-00'),
-(7, 'Blaine Mccray', 'lolywyxyv', '6e4db6a4e1dbadc68e8505d3fe3e21f8', 'female', '2024-06-17', 1, '3', 'Numquam enim eius mo', 'Rerum magn', 'Active', 0, '0000-00-00');
+INSERT INTO `members` (`id`, `fullname`, `username`, `password`, `gender`, `dor`, `services_id`, `plan`, `address`, `contact`, `status`, `reminder`, `pay_date`, `plan_link`) VALUES
+(1, 'Ram Kumar', 'ram', '6a557ed1005dddd940595b8fc6ed47b2', 'male', '2024-02-28', 1, '6', 'Kathmandu', '9876543210', 'active', 0, '2024-04-23', 'https://docs.google.com/spreadsheets/d/12VaPkgRgjo8JVAatI3mfpMsZ1uEzrONAcmYuAywja4g/edit?gid=0#gid=0'),
+(2, 'shyam bahadur', 'shyam', 'cffba1722dd649bd7a72a37e48358b0f', 'male', '2024-02-29', 3, '1', 'Ipsa non non laboru', 'At cupidit', 'active', 0, '2024-04-21', 'https://docs.google.com/spreadsheets/d/1pjuJcjsQiXsuFkC2LgYjlyieTzB4xHkJ4eHJ_RCkqQw/edit?gid=279489010#gid=279489010'),
+(5, 'Hari Bahadur', 'hari', 'bd1839a2fcfcb41ccc4942ca617cc2a5', 'male', '2024-06-16', 2, '1', 'Dolorem officia illu', 'Quia offic', 'active', 0, '0000-00-00', ''),
+(6, 'Roanna Fowler', 'vihifilu', '815188a998047a30ac00400f15beae05', 'female', '2024-06-17', 3, '1', 'Eum adipisci expedit', 'Iste irure', 'Active', 0, '0000-00-00', ''),
+(7, 'Blaine Mccray', 'lolywyxyv', '6e4db6a4e1dbadc68e8505d3fe3e21f8', 'female', '2024-06-17', 1, '3', 'Numquam enim eius mo', 'Rerum magn', 'Active', 0, '0000-00-00', ''),
+(9, 'Lesley Glover', 'repazogoq', '53539afa6d1e5c80fb8ad29ea5f72115', 'male', '2024-06-19', 1, '3', 'Optio alias sint q', 'Aspernatur', 'Active', 0, '0000-00-00', '');
 
 --
 -- Triggers `members`
@@ -206,11 +208,12 @@ CREATE TABLE `progress` (
 --
 
 INSERT INTO `progress` (`id`, `ini_weight`, `curr_weight`, `ini_bodytype`, `curr_bodytype`, `member_id`) VALUES
-(2, 54, 62, 'slim', 'athletic', 1),
+(2, 54, 64, 'slim', 'athletic', 1),
 (3, 56, 54, 'slim', 'slim', 2),
 (6, 0, 0, '', '', 5),
 (7, 0, 0, '', '', 6),
-(8, 0, 0, '', '', 7);
+(8, 0, 0, '', '', 7),
+(9, 0, 0, '', '', 9);
 
 -- --------------------------------------------------------
 
@@ -390,13 +393,13 @@ ALTER TABLE `equipment`
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `progress`
 --
 ALTER TABLE `progress`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `services`
