@@ -53,7 +53,7 @@ while($row=mysqli_fetch_assoc($result)){
                 </table>
             </div>
             <div class="bottom">
-                <h3>Last Payment Done: $<?=$row['cost']?>/-</h3>
+                <h3>Last Payment Done: Rs.<?=$row['cost']?>/-</h3>
                 <p>Member Since: <?=$row['dor']?></p>
             </div>
         </div>

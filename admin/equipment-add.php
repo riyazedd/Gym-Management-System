@@ -14,7 +14,7 @@ if(!empty($_POST)){
     $total_cost = $quantity * $cost;
 
     // Check if the vendor already exists
-    $vendorExistsQuery = "SELECT id FROM vendors WHERE name = '$vendor'";
+    $vendorExistsQuery = "SELECT id FROM vendors WHERE vendor_name = '$vendor'";
     $vendorExistsResult = mysqli_query($conn, $vendorExistsQuery);
 
     if(mysqli_num_rows($vendorExistsResult) > 0) {
@@ -23,7 +23,7 @@ if(!empty($_POST)){
         $vendorId = $vendorData['id'];
     } else {
         // If the vendor doesn't exist, insert it and get its ID
-        $insertVendorQuery = "INSERT INTO vendors (name, address, contact) VALUES ('$vendor', '$address', '$contact')";
+        $insertVendorQuery = "INSERT INTO vendors (vendor_name, address, contact) VALUES ('$vendor', '$address', '$contact')";
         mysqli_query($conn, $insertVendorQuery);
         $vendorId = mysqli_insert_id($conn);
     }
