@@ -167,11 +167,13 @@ if ($status_result->num_rows > 0) {
                 <h2 class="num"><?= $total_earning ?></h2>
                 <h2>Total Earning</h2>
             </div>
+            <a href="announcement-manage.php">
             <div class="stat-box">
                 <i class="fa-solid fa-bullhorn"></i>
                 <h2 class="num"><?= $num ?></h2>
                 <h2>Announcements</h2>
             </div>
+            </a>
         </div>
         <div class="charts">
             <div id="chartContainer"></div>
