@@ -1,5 +1,6 @@
 <?php
 include '../dbcon.php';
+include "includes/authentication.php";
 
 if(isset($_GET['id'])) $id=$_GET['id'];
 

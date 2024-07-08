@@ -14,7 +14,7 @@ if(!empty($_POST)){
     if(!empty($search)){
         $sql="SELECT members.*, services.service_name, services.cost
         FROM members
-        LEFT JOIN services on members.services_id=services.id WHERE CONCAT(fullname,status) LIKE '%$search%'";
+        LEFT JOIN services on members.services_id=services.id WHERE CONCAT(fullname,status,service_name) LIKE '%$search%'";
         $res=mysqli_query($conn,$sql);
     }else{
         $sql="SELECT members.*, services.service_name, services.cost

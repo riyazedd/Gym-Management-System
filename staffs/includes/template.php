@@ -1,11 +1,3 @@
-<?php
-
-if($_SESSION['is_login']!=true || $_SESSION['role']!='staff'){
-    $_SESSION['error']="Must Login to Access";
-    header('Location:index.php');
-}
-
-?>
 <link rel="stylesheet" href="css/template.css">   
 <div class="container">
         <div class="sidebar">

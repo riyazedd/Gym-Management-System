@@ -10,9 +10,6 @@ if (!empty($_POST)) {
     $contact = trim($_POST['contact'] ?? '');
     $address = trim($_POST['address'] ?? '');
     $gender = $_POST['gender'] ?? '';
-    $plan = $_POST['plan'] ?? '';
-    $services = $_POST['services'] ?? '';
-    $dor = date("Y-m-d");
 
     if (empty($fname)) {
         $errors['fullname'] = "Full Name is required";
@@ -27,18 +24,14 @@ if (!empty($_POST)) {
     }
     if (empty($contact)) {
         $errors['contact'] = "Contact Number is required";
+    } elseif (!preg_match('/^98\d{8}$/', $contact)) {
+        $errors['contact'] = "Contact Number must be 10 digits long and start with 98";
     }
     if (empty($address)) {
         $errors['address'] = "Address is required";
     }
     if (empty($gender)) {
         $errors['gender'] = "Gender is required";
-    }
-    if (empty($plan)) {
-        $errors['plan'] = "Plan is required";
-    }
-    if (empty($services)) {
-        $errors['services'] = "Service is required";
     }
 
     // Check if username exists
@@ -52,18 +45,17 @@ if (!empty($_POST)) {
     }
 
     if (empty($errors)) {
-        // Hash the password
-        $hashed_password = md5($password);
-
-        $sql = "INSERT INTO members (fullname,username,password,contact,address,gender,plan,services_id,dor) VALUES
-        ('$fname','$username','$hashed_password','$contact','$address','$gender','$plan','$services','$dor')";
-
-        $result = mysqli_query($conn, $sql);
-        if ($result) {
-            $_SESSION['success'] = "Registered Successfully";
-        } else {
-            $_SESSION['error'] = "Error Registering User";
-        }
+        // Store data in session and redirect to next page
+        $_SESSION['signup_data'] = [
+            'fullname' => $fname,
+            'username' => $username,
+            'password' => $password,
+            'contact' => $contact,
+            'address' => $address,
+            'gender' => $gender
+        ];
+        header('Location: signup_step2.php');
+        exit();
     }
 }
 ?>
@@ -114,7 +106,7 @@ if (!empty($_POST)) {
                     <div class="error"><?php echo $errors['contact'] ?? ''; ?></div>
                     <div class="input">
                         <i class="fa-solid fa-phone"></i>
-                        <input type="text" name="contact" placeholder="Contact Number" value="<?php echo htmlspecialchars($contact ?? '', ENT_QUOTES); ?>" >
+                        <input type="number" name="contact" placeholder="Contact Number" pattern="98\d{8}" title="Contact Number must be 10 digits long and start with 98" value="<?php echo htmlspecialchars($contact ?? '', ENT_QUOTES); ?>" >
                     </div>
                     <div class="error"><?php echo $errors['address'] ?? ''; ?></div>
                     <div class="input">
@@ -131,40 +123,9 @@ if (!empty($_POST)) {
                             <option value="others" <?php if (($gender ?? '') == 'others') echo 'selected'; ?>>Others</option>
                         </select>
                     </div>
-                    <div class="error"><?php echo $errors['plan'] ?? ''; ?></div>
-                    <div class="input">
-                        <i class="fa-solid fa-hourglass"></i>
-                        <select name="plan" >
-                            <option selected disabled hidden value="">Select Plan</option>
-                            <option value="1" <?php if (($plan ?? '') == '1') echo 'selected'; ?>>One Month</option>
-                            <option value="3" <?php if (($plan ?? '') == '3') echo 'selected'; ?>>Three Months</option>
-                            <option value="6" <?php if (($plan ?? '') == '6') echo 'selected'; ?>>Six Months</option>
-                            <option value="12" <?php if (($plan ?? '') == '12') echo 'selected'; ?>>One Year</option>
-                        </select>
-                    </div>
-                    <div class="error"><?php echo $errors['services'] ?? ''; ?></div>
-                    <div class="input">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <select name="services" >
-                            <option selected disabled hidden value="">Select Service</option>
-                            <?php
-                            // Assuming $conn is your database connection
-                            $service_query = "SELECT id, service_name FROM services"; // Assuming your services table has columns id and service_name
-                            $service_result = mysqli_query($conn, $service_query);
-                            if ($service_result && mysqli_num_rows($service_result) > 0) {
-                                while ($row = mysqli_fetch_assoc($service_result)) {
-                                    $service_id = $row['id'];
-                                    $service_name = $row['service_name'];
-                                    echo "<option value='$service_id' ".(($services ?? '') == $service_id ? 'selected' : '').">$service_name</option>";
-                                }
-                            }
-                            ?>
-                        </select>
-                    </div>
                 </div>
-                <div class="action">
-                    <a href="index.php">Login</a>
-                    <button type="submit">Submit Details</button>
+                <div class="action next">
+                    <button type="submit">Next</button>
                 </div>
             </form>
         </div>

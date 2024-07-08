@@ -30,6 +30,14 @@ if(!empty($_POST)){
     <title>Customer Login</title>
     <link rel="stylesheet" href="./css/login.css">
     <script src="https://kit.fontawesome.com/426c1a4028.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            <?php if (isset($_SESSION['success'])): ?>
+                alert("<?php echo $_SESSION['success']; ?>");
+                <?php unset($_SESSION['success']); ?>
+            <?php endif; ?>
+        });
+    </script>
 </head>
 <body>
     <div class="container">

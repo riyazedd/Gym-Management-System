@@ -1,29 +1,26 @@
 <?php
 include '../dbcon.php';
+include "includes/authentication.php";
+
+$trainer_id = $_SESSION['uid'];
+
 
 //Displaying Members
 $sql="SELECT members.*, services.service_name , services.cost
     FROM members
-    LEFT JOIN services on members.services_id=services.id";
-$res=mysqli_query($conn,$sql);
-$sn=1;
+    LEFT JOIN services on members.services_id=services.id
+        WHERE members.trainer_id = $trainer_id";
 
-
-//Searching Users 
-if(!empty($_POST)){
-    $search=$_POST['search'];
-    if(!empty($search)){
-        $sql="SELECT members.*, services.service_name, services.cost
-        FROM members
-        LEFT JOIN services on members.services_id=services.id WHERE CONCAT(fullname,status) LIKE '%$search%'";
-        $res=mysqli_query($conn,$sql);
-    }else{
-        $sql="SELECT members.*, services.service_name, services.cost
-        FROM members
-        LEFT JOIN services on members.services_id=services.id";
-        $res=mysqli_query($conn,$sql);
+//Search Users
+if (!empty($_POST)) {
+    $search = $_POST['search'];
+    if (!empty($search)) {
+        $sql .= " AND (CONCAT(members.fullname, services.service_name, status) LIKE '%$search%')";
     }
 }
+
+$res=mysqli_query($conn,$sql);
+$sn=1;
 
 ?>
 

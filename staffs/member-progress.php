@@ -1,34 +1,27 @@
 <?php
 include '../dbcon.php';
+include 'includes/authentication.php';
 
-//Displaying Members Progress(initial weight, current weight, progress)
-$sql = "SELECT members.*,services.service_name, progress.ini_weight, progress.curr_weight, progress.ini_bodytype, progress.curr_bodytype
+
+$trainer_id = $_SESSION['uid'];
+
+
+$sql = "SELECT members.*, services.service_name, progress.ini_weight, progress.curr_weight, progress.ini_bodytype, progress.curr_bodytype
         FROM members
         LEFT JOIN progress ON members.id = progress.member_id
         LEFT JOIN services ON members.services_id = services.id
-        ";
+        WHERE members.trainer_id = $trainer_id";
 
-$res = mysqli_query($conn, $sql);
-$sn = 1;
-
-//Searching Users 
+// Searching Users
 if (!empty($_POST)) {
     $search = $_POST['search'];
     if (!empty($search)) {
-        $sql = "SELECT members.*,services.service_name, progress.ini_weight, progress.curr_weight, progress.ini_bodytype, progress.curr_bodytype
-        FROM members
-        LEFT JOIN progress ON members.id = progress.member_id
-        LEFT JOIN services ON members.services_id = services.id WHERE CONCAT(fullname,service_name) LIKE '%$search%'";
-        $res = mysqli_query($conn, $sql);
-    } else {
-        $sql = "SELECT members.*,services.service_name, progress.ini_weight, progress.curr_weight, progress.ini_bodytype, progress.curr_bodytype
-        FROM members
-        LEFT JOIN progress ON members.id = progress.member_id
-        LEFT JOIN services ON members.services_id = services.id";
-        $res = mysqli_query($conn, $sql);
+        $sql .= " AND (CONCAT(members.fullname, services.service_name) LIKE '%$search%')";
     }
 }
 
+$res = mysqli_query($conn, $sql);
+$sn = 1;
 ?>
 
 <!DOCTYPE html>
@@ -101,8 +94,7 @@ if (!empty($_POST)) {
                             echo $progress;
                         }
                         ?></td>
-                        <td><a href="member-progress-update.php?id=<?= $row['id'] ?>"><button class="update">Edit</button></a>
-                        </td>
+                        <td><a href="member-progress-update.php?id=<?= $row['id'] ?>"><button class="update">Edit</button></a></td>
                         <td><a href="upload_plan.php?id=<?= $row['id'] ?>"><button class="upload">Upload</button></a></td>
                     </tr>
                 <?php } ?>
@@ -110,5 +102,7 @@ if (!empty($_POST)) {
         </table>
     </div>
 
-
     <?php include 'includes/footer.php' ?>
+</body>
+
+</html>

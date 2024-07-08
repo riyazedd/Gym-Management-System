@@ -10,7 +10,6 @@ if (!empty($_POST) && isset($_POST['add'])) {
     $contact = trim($_POST['contact'] ?? '');
     $address = trim($_POST['address'] ?? '');
     $gender = $_POST['gender'] ?? '';
-    $designation = $_POST['designation'] ?? '';
 
     // Validate all fields are filled
     if (empty($fname)) {
@@ -29,15 +28,15 @@ if (!empty($_POST) && isset($_POST['add'])) {
     }
     if (empty($contact)) {
         $errors['contact'] = "Contact Number is required.";
+    } elseif (!preg_match('/^98\d{8}$/', $contact)) {
+        $errors['contact'] = "Contact Number must be 10 digits long and start with 98";
     }
+    
     if (empty($address)) {
         $errors['address'] = "Address is required.";
     }
     if (empty($gender)) {
         $errors['gender'] = "Gender is required.";
-    }
-    if (empty($designation)) {
-        $errors['designation'] = "Designation is required.";
     }
 
     // Check if username exists
@@ -54,7 +53,7 @@ if (!empty($_POST) && isset($_POST['add'])) {
         // Hash the password
         $hashed_password = md5($password);
 
-        $sql = "INSERT INTO staffs (fullname, username, password, email, contact, address, gender, designation) VALUES ('$fname', '$username', '$hashed_password', '$email', '$contact', '$address', '$gender', '$designation')";
+        $sql = "INSERT INTO staffs (fullname, username, password, email, contact, address, gender) VALUES ('$fname', '$username', '$hashed_password', '$email', '$contact', '$address', '$gender')";
 
         $result = mysqli_query($conn, $sql);
         if ($result) {
@@ -110,20 +109,10 @@ if (!empty($_POST) && isset($_POST['add'])) {
                     <input type="email" name="email" value="<?php echo htmlspecialchars($email ?? '', ENT_QUOTES); ?>"><br>
                     
                     <label for="contact">Contact: <?php if(!empty($errors)){?><span class="errors"><?php echo $errors['contact'] ?? ''; ?></span><?php } ?></label>
-                    <input type="text" name="contact" value="<?php echo htmlspecialchars($contact ?? '', ENT_QUOTES); ?>"><br>
-                    
+                    <input type="number" name="contact" placeholder="Contact Number" pattern="98\d{8}" title="Contact Number must be 10 digits long and start with 98" value="<?php echo htmlspecialchars($contact ?? '', ENT_QUOTES); ?>" >
                     <label for="address">Address: <?php if(!empty($errors)){?><span class="errors"><?php echo $errors['address'] ?? ''; ?></span><?php } ?></label>
                     <input type="text" name="address" value="<?php echo htmlspecialchars($address ?? '', ENT_QUOTES); ?>"><br>
                     
-                    <label for="designation">Designation: <?php if(!empty($errors)){?><span class="errors"><?php echo $errors['designation'] ?? ''; ?></span><?php } ?></label>
-                    <select name="designation">
-                        <option value="" disabled hidden selected>Select Designation</option>
-                        <option value="Cashier" <?php if (($designation ?? '') == 'Cashier') echo 'selected'; ?>>Cashier</option>
-                        <option value="Trainer" <?php if (($designation ?? '') == 'Trainer') echo 'selected'; ?>>Trainer</option>
-                        <option value="Gym Assistant" <?php if (($designation ?? '') == 'Gym Assistant') echo 'selected'; ?>>Gym Assistant</option>
-                        <option value="Front Desk Officer" <?php if (($designation ?? '') == 'Front Desk Officer') echo 'selected'; ?>>Front Desk Officer</option>
-                        <option value="Manager" <?php if (($designation ?? '') == 'Manager') echo 'selected'; ?>>Manager</option>
-                    </select><br>
                     <button type="submit" name="add">Add Staff</button>
                 </div>
             </form>

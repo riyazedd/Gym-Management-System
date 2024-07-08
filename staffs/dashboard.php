@@ -1,13 +1,17 @@
 <?php
 require_once "../dbcon.php";
+include "includes/authentication.php";
 
-//Registered Member Count
-$sql = "SELECT * FROM members";
-$result = mysqli_query($conn, $sql);
-$memberCount = mysqli_num_rows($result);
+// Fetching User ID
+$uid = $_SESSION['uid'];
+
+// Fetching Assigned Members Count
+$count_sql = "SELECT COUNT(*) AS member_count FROM members WHERE trainer_id = $uid";
+$count_result = mysqli_query($conn, $count_sql);
+$member_count = mysqli_fetch_assoc($count_result)['member_count'];
 
 // For male and female chart
-$query = "SELECT gender, COUNT(*) as count FROM members GROUP BY gender";
+$query = "SELECT gender, COUNT(*) as count FROM members WHERE trainer_id = $uid GROUP BY gender";
 $result = mysqli_query($conn, $query);
 
 $genderDataPoints = array();
@@ -28,6 +32,7 @@ $service_query = "
     SELECT services.service_name AS service_name, COUNT(members.id) AS count 
     FROM members
     JOIN services ON members.services_id = services.id
+    WHERE members.trainer_id = $uid
     GROUP BY services.service_name
 ";
 $service_result = mysqli_query($conn, $service_query);
@@ -51,7 +56,7 @@ if ($service_result->num_rows > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Dashboard</title>
+    <title>Trainer Dashboard</title>
     <link rel="stylesheet" href="css/template.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <script src="https://kit.fontawesome.com/426c1a4028.js" crossorigin="anonymous"></script>
@@ -101,8 +106,8 @@ if ($service_result->num_rows > 0) {
             <div class="stats">
                 <div class="stat-box">
                     <i class="fa-solid fa-users"></i>
-                    <h2 class="num"><?= $memberCount ?></h2>
-                    <h2>Total Clients</h2>
+                    <h2 class="num"><?= $member_count ?></h2>
+                    <h2>Total Assigned Members</h2>
                 </div>
             </div>
             <div class="announcement">

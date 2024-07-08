@@ -2,27 +2,41 @@
 include '../dbcon.php';
 include 'includes/authentication.php';
 
-//For displaying TO-DO List//
+// Fetching User ID
 $uid = $_SESSION['uid'];
-$sql = "SELECT * FROM todo WHERE user_id='$uid'";
-$result = mysqli_query($conn, $sql);
 
-//FOR COMPLETED TASK
+// Fetching To-Do List
+$sql_todo = "SELECT * FROM todo WHERE user_id='$uid'";
+$result_todo = mysqli_query($conn, $sql_todo);
+
+// Deleting Completed Task
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $sql = "DELETE FROM todo WHERE id='$id'";
-    if (mysqli_query($conn, $sql)) {
+    $sql_complete_task = "DELETE FROM todo WHERE id='$id'";
+    if (mysqli_query($conn, $sql_complete_task)) {
         header('Location:dashboard.php');
         $_SESSION['success'] = "Task Completed Successfully";
+        exit();
     }
 }
 
-//for training plan
-$plan_sql="SELECT plan_link FROM members WHERE id=$uid";
-$plan_res=mysqli_query($conn,$plan_sql);
+// Fetching Training Plan Link
+$plan_sql = "SELECT plan_link FROM members WHERE id=$uid";
+$plan_res = mysqli_query($conn, $plan_sql);
+$plan_link = mysqli_fetch_assoc($plan_res)['plan_link'];
 
-while($link=mysqli_fetch_assoc($plan_res)){
-    $plan=$link['plan_link'];
+// Fetching Assigned Trainer
+$trainer_sql = "SELECT staffs.fullname AS trainer_name, members.trainer_id
+               FROM members
+               LEFT JOIN staffs ON members.trainer_id = staffs.id
+               WHERE members.id = $uid";
+$trainer_res = mysqli_query($conn, $trainer_sql);
+$trainer_row = mysqli_fetch_assoc($trainer_res);
+
+if ($trainer_row && ($trainer_row['trainer_id'] !== null && $trainer_row['trainer_id'] !== '0')) {
+    $trainer_name = $trainer_row['trainer_name'];
+} else {
+    $trainer_name = "Trainer Not Assigned Yet";
 }
 
 ?>
@@ -55,7 +69,7 @@ while($link=mysqli_fetch_assoc($plan_res)){
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($result as $key => $task) { ?>
+                        <?php foreach ($result_todo as $task) { ?>
                             <tr>
                                 <td><?= $task['task_desc'] ?></td>
                                 <td><?= $task['task_status'] ?></td>
@@ -76,9 +90,9 @@ while($link=mysqli_fetch_assoc($plan_res)){
                 <h2>Gym Announcement <span class="hide-show"><i class="fa-solid fa-chevron-down icon"></i></span></h2>
                 <div class="announce-list">
                     <?php
-                    $sql = "SELECT * FROM announcements";
-                    $result = mysqli_query($conn, $sql);
-                    while ($row = mysqli_fetch_assoc($result)) {
+                    $sql_announcements = "SELECT * FROM announcements";
+                    $result_announcements = mysqli_query($conn, $sql_announcements);
+                    while ($row = mysqli_fetch_assoc($result_announcements)) {
                         ?>
                         <div class="announce">
                             <span class="ann"><i class="fa-solid fa-bullhorn"></i></span>
@@ -92,14 +106,23 @@ while($link=mysqli_fetch_assoc($plan_res)){
                 </div>
             </div>
         </div>
+        <div class="trainer-info">
+            <h2>Assigned Trainer: <?= $trainer_name ?></h2>
+        </div>
         <div class="bottom">
             <h1>Workout Routine</h1>
-            <iframe class="plan"
-                    src="<?=$plan?>"
-                    width="100%" height="600px"></iframe>
-                <div class="sheet"><a href="<?=$plan?>" target="_blank">&#8594;Open in Google Sheets</a></div>
+            <?php if ($plan_link) { ?>
+                <iframe class="plan" src="<?= $plan_link ?>" width="100%" height="600px"></iframe>
+                <div class="sheet"><a href="<?= $plan_link ?>" target="_blank">&#8594;Open in Google Sheets</a></div>
+            <?php } else { ?>
+                <p>Training Plan is not added yet.</p>
+            <?php } ?>
         </div>
-
+        
     </div>
 
     <?php include 'includes/footer.php' ?>
+
+</body>
+
+</html>

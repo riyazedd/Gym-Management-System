@@ -1,28 +1,26 @@
 <?php
 include '../dbcon.php';
+include "includes/authentication.php";
+
+$trainer_id = $_SESSION['uid'];
+
 
 //Displaying Status
-$sql="SELECT members.*, services.service_name 
-    FROM members
-    LEFT JOIN services on members.services_id=services.id";
-$res=mysqli_query($conn,$sql);
-$sn=1;
 
-//Searching Users 
-if(!empty($_POST)){
-    $search=$_POST['search'];
-    if(!empty($search)){
-        $sql="SELECT members.*, services.service_name, services.cost
+$sql = "SELECT members.*, services.service_name
         FROM members
-        LEFT JOIN services on members.services_id=services.id WHERE CONCAT(fullname,status) LIKE '%$search%'";
-        $res=mysqli_query($conn,$sql);
-    }else{
-        $sql="SELECT members.*, services.service_name, services.cost
-        FROM members
-        LEFT JOIN services on members.services_id=services.id";
-        $res=mysqli_query($conn,$sql);
+        LEFT JOIN services ON members.services_id = services.id
+        WHERE members.trainer_id = $trainer_id";
+
+// Searching Users
+if (!empty($_POST)) {
+    $search = $_POST['search'];
+    if (!empty($search)) {
+        $sql .= " AND (CONCAT(members.fullname, services.service_name,status) LIKE '%$search%')";
     }
 }
+$res=mysqli_query($conn,$sql);
+$sn=1;
 
 
 ?>
@@ -32,7 +30,7 @@ if(!empty($_POST)){
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>FitManage Hub - Admin</title>
+        <title>FitManage Hub - Trainer</title>
         <link rel="stylesheet" href="css/member-status.css">
         <script src="https://kit.fontawesome.com/426c1a4028.js" crossorigin="anonymous"></script>
         <script>

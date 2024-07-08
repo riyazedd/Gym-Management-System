@@ -117,7 +117,7 @@ if (!empty($_POST)) {
                     <div class="contact">
                         <h3>Contact Details</h3>
                         <label for="contact">Contact Number: <?php if(!empty($errors)){?><span class="errors"><?php echo $errors['contact'] ?? ''; ?></span><?php } ?></label>
-                        <input type="text" name="contact" value="<?php echo htmlspecialchars($contact ?? '', ENT_QUOTES); ?>"><br>
+                        <input type="number" name="contact" value="<?php echo htmlspecialchars($contact ?? '', ENT_QUOTES); ?>"><br>
                         
                         
                         <label for="address">Address: <?php if(!empty($errors)){?><span class="errors"><?php echo $errors['address'] ?? ''; ?></span><?php } ?></label>

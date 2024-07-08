@@ -11,7 +11,7 @@ if(!empty($_POST)){
         $_SESSION['user']=$user['username'];
         $_SESSION['uid']=$user['id'];
         $_SESSION['is_login']=true;
-        $_SESSION['role']="staff";
+        $_SESSION['role']="trainer";
         header("Location: dashboard.php");
     }
     else{
@@ -27,7 +27,7 @@ if(!empty($_POST)){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Login</title>
+    <title>Trainer Login</title>
     <link rel="stylesheet" href="./css/login.css">
     <script src="https://kit.fontawesome.com/426c1a4028.js" crossorigin="anonymous"></script>
 </head>

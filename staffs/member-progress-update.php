@@ -1,5 +1,6 @@
 <?php
 include '../dbcon.php';
+include "includes/authentication.php";
 
 //Updating Progress
 if(isset($_GET['id'])) $id=$_GET['id'];
@@ -35,7 +36,7 @@ while ($row = mysqli_fetch_assoc($res)) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>FitManage Hub - Staff</title>
+        <title>FitManage Hub - Trainer</title>
         <link rel="stylesheet" href="css/progress-update.css">
         <script src="https://kit.fontawesome.com/426c1a4028.js" crossorigin="anonymous"></script>   
     </head>

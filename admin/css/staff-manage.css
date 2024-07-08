@@ -19,6 +19,15 @@ table .update{
     color: blue;
 }
 
+table .view-members{
+    text-decoration: none;
+    color: rgb(92,92,92);
+}
+
+table .view-members:hover{
+    text-decoration: underline;
+}
+
 .add{
     margin-top: 1rem;
     padding: 10px;
@@ -33,4 +42,17 @@ table .update{
 .add:hover{
     background-color: blue;
     cursor: pointer;
+}
+
+.back{
+    margin-top: 2rem;
+}
+
+.back a{
+    text-decoration: none;
+    color: rgb(92,92,92);
+}
+
+.back a:hover{
+    text-decoration: underline;
 }
